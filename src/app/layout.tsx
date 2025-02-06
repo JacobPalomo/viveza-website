@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import { generalSans, clashGrotesk } from '@/styles/fonts'
-import { Footer } from '@/components/sections/footer/Footer'
-import Header from '@/components/sections/header/Header'
+import { Footer } from '@/components/ui/footer/Footer'
+import Header from '@/components/ui/header/Header'
 
 export const metadata: Metadata = {
 	title: 'Viveza Textil | Ropa Seamless y Deportiva',

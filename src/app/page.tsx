@@ -1,17 +1,18 @@
-import Conocenos from '@/components/sections/Conocenos'
-import Customers from '@/components/sections/Customers'
-import Features from '@/components/sections/Features'
-import Hero from '@/components/sections/Hero/Hero'
-import Marcas from '@/components/sections/marcas/Marcas'
+import Conocenos from '@/components/home/Conocenos'
+import Customers from '@/components/home/Customers'
+import Features from '@/components/home/Features'
+import Hero from '@/components/home/hero/Hero'
+import Marcas from '@/components/home/marcas/Marcas'
+import Main from '@/components/ui/Main'
 
 export default function Home() {
 	return (
-		<main className='flex min-h-screen flex-col items-center justify-center bg-background'>
+		<Main>
 			<Hero />
 			<Customers />
 			<Features />
 			<Conocenos />
 			<Marcas />
-		</main>
+		</Main>
 	)
 }

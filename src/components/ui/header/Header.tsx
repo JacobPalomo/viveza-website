@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import Logo from '@/components/ui/Logos/VivezaCorto'
-import HeaderLink from '@/components/sections/header/Link'
-import HeaderNav from '@/components/sections/header/Nav'
+import HeaderLink from '@/components/ui/header/Link'
+import HeaderNav from '@/components/ui/header/Nav'
 import {
 	IconArrowNarrowRight,
 	IconBrandLine,
@@ -60,7 +60,7 @@ export default function Header() {
 						</Link>
 
 						<HeaderNav>
-							<HeaderLink href='/'>Inicio</HeaderLink>
+							<HeaderLink href='/#hero'>Inicio</HeaderLink>
 							<HeaderLink href='/#conocenos'>Conócenos</HeaderLink>
 							<HeaderLink href='/#marcas'>Marcas</HeaderLink>
 							<HeaderLink href='https://blog.vivezasport.com'>Blog</HeaderLink>

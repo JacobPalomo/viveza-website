@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import BackdropBlur from '../ui/BackdropBlur'
+import BackdropBlur from '@/components/ui/BackdropBlur'
 
 interface CustomerLogo {
 	src: string

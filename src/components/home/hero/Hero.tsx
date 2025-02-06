@@ -1,12 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import MobileVideo from './MobileVideo'
+import MobileVideo from '@/components/home/hero/MobileVideo'
 import { motion } from 'motion/react'
 
 export default function Hero() {
 	return (
-		<section className='before-radial-mask-image flex min-h-screen w-full flex-col items-center justify-center bg-background max-md:flex-col-reverse'>
+		<section
+			id='hero'
+			className='before-radial-mask-image flex min-h-screen w-full flex-col items-center justify-center bg-background max-md:flex-col-reverse'
+		>
 			<MobileVideo />
 
 			<div className='max-sm: absolute top-[50%] right-[10%] z-10 flex w-1/3 -translate-y-[50%] flex-col gap-10 max-md:right-[inherit] max-md:left-[10%] max-md:w-1/2 max-sm:relative max-sm:right-auto max-sm:left-auto max-sm:w-full max-sm:px-6'>
