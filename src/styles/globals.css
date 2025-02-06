@@ -16,6 +16,7 @@
 	margin: 0;
 	scrollbar-width: thin;
 	scrollbar-color: #00aae2 var(--color-background);
+	scroll-behavior: smooth;
 }
 
 body {
