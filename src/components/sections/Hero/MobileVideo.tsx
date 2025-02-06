@@ -7,7 +7,6 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import vivezaIg from '@/../public/logos/veveza-ig.png'
 
 export default function MobileVideo() {
 	return (
@@ -23,7 +22,9 @@ export default function MobileVideo() {
 						<div className='z-10 flex items-center justify-between'>
 							<div className='flex items-center justify-center gap-2 text-sm font-semibold text-white'>
 								<Image
-									src={vivezaIg}
+									src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/rzapbwdi08ddruhmentb'
+									width={512}
+									height={512}
 									alt='Logo Viveza Instagram'
 									quality={90}
 									priority
@@ -92,7 +93,11 @@ export default function MobileVideo() {
 						className='rounded-xl'
 					>
 						<source
-							src='/hero-mobile-video.mp4'
+							src='https://res.cloudinary.com/dtvpssenl/video/upload/f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
+							type='video/webm'
+						/>
+						<source
+							src='https://res.cloudinary.com/dtvpssenl/video/upload/f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
 							type='video/mp4'
 						/>
 						Tu navegador no es compatible con este video.

@@ -2,16 +2,40 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import coppel from '@/../public/logos/clientes/coppel.svg'
-import liverpool from '@/../public/logos/clientes/liverpool.svg'
-import milano from '@/../public/logos/clientes/milano.svg'
-import puntoBlanco from '@/../public/logos/clientes/punto-blanco.svg'
-import saraLee from '@/../public/logos/clientes/sara-lee.svg'
-import woolworth from '@/../public/logos/clientes/woolworth.svg'
 import BackdropBlur from '../ui/BackdropBlur'
 
+interface CustomerLogo {
+	src: string
+	alt: string
+}
+
 export default function Customers() {
-	const logos = [coppel, liverpool, milano, puntoBlanco, saraLee, woolworth]
+	const logos: CustomerLogo[] = [
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/u8cigji1vrnzbe6oeaar',
+			alt: 'Logo del cliente Coppel',
+		},
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/nwpzvterfogwtna1h8zm',
+			alt: 'Logo del cliente Liverpool',
+		},
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/lh1tvcvau5lwjmdivt3z',
+			alt: 'Logo del cliente Milano',
+		},
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/vmtnro2i0n42jbmrqtof',
+			alt: 'Logo del cliente Punto Blanco',
+		},
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/hzkklvuxxtaqao7gqmab',
+			alt: 'Logo del cliente Sara Lee',
+		},
+		{
+			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/xx1t5nioolxdutc3qze9',
+			alt: 'Logo del cliente Woolworth',
+		},
+	]
 
 	return (
 		<section className='customers-carousel relative z-[2] w-full overflow-hidden bg-[#00aae2] py-8'>
@@ -25,20 +49,26 @@ export default function Customers() {
 				animate={{ x: ['0%', '-25%'] }}
 				transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
 			>
-				{[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-					<li
-						key={index}
-						className='px-[24px]'
-					>
-						<Image
-							src={logo}
-							alt={`Client ${index}`}
-							quality={100}
-							loading='lazy'
-							className='h-10 w-auto max-md:h-8 max-sm:h-6'
-						/>
-					</li>
-				))}
+				{[...logos, ...logos, ...logos, ...logos]
+					.filter((logo) => logo.src)
+					.map((logo, index) => (
+						<li
+							key={logo.src.split('/')[logo.src.split('/').length - 1] + index}
+							className='px-[24px]'
+						>
+							<div className='relative h-10 w-52 max-md:h-8 max-md:w-40 max-sm:h-6 max-sm:w-32'>
+								<Image
+									src={logo.src}
+									alt={logo.alt}
+									fill
+									sizes='(max-width: 768px) 128px, (max-width: 1200px) 160px, 200px'
+									quality={100}
+									loading='lazy'
+									className='object-contain'
+								/>
+							</div>
+						</li>
+					))}
 			</motion.ul>
 
 			<BackdropBlur

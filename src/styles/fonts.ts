@@ -12,12 +12,14 @@ const generalSans = localFont({
 		},
 	],
 	variable: '--general-sans-font',
+	display: 'swap',
 })
 
 const clashGrotesk = localFont({
 	src: '../fonts/ClashGrotesk-Variable.ttf',
 	style: 'normal',
 	variable: '--clash-grotesk-font',
+	display: 'swap',
 })
 
 export { generalSans, clashGrotesk }

@@ -16,7 +16,7 @@ export default function Conocenos() {
 				className='absolute top-0 left-0 z-10 h-full w-full bg-background object-cover'
 			>
 				<source
-					src='/backgrounds/conocenos.mp4'
+					src='https://res.cloudinary.com/dtvpssenl/video/upload/f_auto:video,q_auto/rqoaqc7br3sxssk1shwq'
 					type='video/mp4'
 				/>
 				Tu navegador no es compatible con el video.

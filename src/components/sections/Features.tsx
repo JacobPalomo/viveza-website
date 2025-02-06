@@ -9,7 +9,7 @@ export default function Features() {
 				</h3>
 				<p>Procesos innovadores con tecnología avanzada en textiles.</p>
 				<Image
-					src='/cards/calidad.avif'
+					src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/l5rjcpugltsoo5fhijkk'
 					alt='Imagen que ejemplifica la calidad y textura de nuestra ropa'
 					width={720}
 					height={900}
@@ -26,7 +26,7 @@ export default function Features() {
 				</h3>
 				<p>Ropa diseñada para la máxima comodidad y frescura.</p>
 				<Image
-					src='/cards/diseno.avif'
+					src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/fmdzdecolmwngsrdhsu2'
 					alt='Imagen que muestra el diseño de nuestra ropa'
 					width={860}
 					height={1147}
@@ -43,7 +43,7 @@ export default function Features() {
 				</h3>
 				<p>Un equipo apasionado que crea productos de alto rendimiento.</p>
 				<Image
-					src='/cards/equipo.avif'
+					src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/jvskeccuqt0l8vl6r2y9'
 					alt='Imagen que muestra nuestro equipo de trabajo'
 					width={860}
 					height={574}
