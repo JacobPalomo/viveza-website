@@ -12,7 +12,7 @@ export default function Hero() {
 		>
 			<MobileVideo />
 
-			<div className='max-sm: absolute top-[50%] right-[10%] z-10 flex w-1/3 -translate-y-[50%] flex-col gap-10 max-md:right-[inherit] max-md:left-[10%] max-md:w-1/2 max-sm:relative max-sm:right-auto max-sm:left-auto max-sm:w-full max-sm:px-6'>
+			<div className='absolute top-[50%] right-[10%] z-10 flex w-1/3 -translate-y-[50%] flex-col gap-10 max-md:right-[inherit] max-md:left-[10%] max-md:w-1/2 max-sm:relative max-sm:right-auto max-sm:left-auto max-sm:w-full max-sm:px-6'>
 				<motion.h2
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
