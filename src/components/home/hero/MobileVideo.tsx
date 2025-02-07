@@ -24,7 +24,7 @@ export default function MobileVideo() {
 			<motion.div
 				initial={{ y: '100vh' }}
 				animate={{ y: 0 }}
-				transition={{ type: 'spring', stiffness: 80 }}
+				transition={{ type: 'spring', stiffness: 80, delay: 0.5 }}
 				className='absolute -bottom-[25%] left-[10%] -translate-y-[25%] max-md:-right-[15%] max-md:bottom-[15%] max-md:left-[inherit] max-md:max-h-1/2 max-md:-translate-y-[15%] max-sm:right-auto max-sm:-bottom-[20%] max-sm:left-auto max-sm:-translate-y-[20%]'
 			>
 				<div className='relative w-96 rounded-3xl border-[16px] border-t-[32px] border-white bg-white shadow-2xl before:absolute before:-top-4 before:left-[50%] before:h-2 before:w-2 before:-translate-[50%] before:rounded-sm before:bg-zinc-400 after:absolute after:bottom-2 after:left-[50%] after:h-1 after:w-20 after:-translate-[50%] after:rounded-sm after:bg-white after:opacity-50 after:backdrop-blur-sm'>
