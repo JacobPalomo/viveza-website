@@ -5,6 +5,10 @@ import TiafLogo from '@/components/ui/Logos/Tiaf'
 import Marca from './Marca'
 
 export default function Marcas() {
+	const cookiesAccepted =
+		typeof window !== 'undefined' &&
+		localStorage.getItem('cookiesAccepted') === 'true'
+
 	return (
 		<section
 			id='marcas'
@@ -35,13 +39,14 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/io2c1wefedel21big8vi'
+						src='/api/cloudinary?url=f_auto,q_auto/io2c1wefedel21big8vi'
 						alt='Casmi Background'
 						width={736}
 						height={980}
 						quality={100}
 						loading='lazy'
 						aria-hidden='true'
+						unoptimized={!cookiesAccepted}
 						className='absolute top-0 z-[1] h-auto w-full object-cover max-md:h-full'
 					/>
 				}
@@ -79,13 +84,14 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/ob919n1kv8jm1hpevmcn'
+						src='/api/cloudinary?url=f_auto,q_auto/ob919n1kv8jm1hpevmcn'
 						alt='Kinis Background'
 						width={736}
 						height={736}
 						quality={100}
 						loading='lazy'
 						aria-hidden='true'
+						unoptimized={!cookiesAccepted}
 						className='absolute top-0 z-[1] h-auto w-full object-cover max-md:h-full'
 					/>
 				}
@@ -123,13 +129,14 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/mqopn4nevglbesjzysxh'
+						src='/api/cloudinary?url=f_auto,q_auto/mqopn4nevglbesjzysxh'
 						alt='TIAF Background'
 						width={5192}
 						height={3466}
 						quality={100}
 						loading='lazy'
 						aria-hidden='true'
+						unoptimized={!cookiesAccepted}
 						className='absolute top-0 z-[1] h-full w-full object-cover'
 					/>
 				}

@@ -10,29 +10,33 @@ interface CustomerLogo {
 }
 
 export default function Customers() {
+	const cookiesAccepted =
+		typeof window !== 'undefined' &&
+		localStorage.getItem('cookiesAccepted') === 'true'
+
 	const logos: CustomerLogo[] = [
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/u8cigji1vrnzbe6oeaar',
+			src: '/api/cloudinary?url=f_auto,q_auto/u8cigji1vrnzbe6oeaar',
 			alt: 'Logo del cliente Coppel',
 		},
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/nwpzvterfogwtna1h8zm',
+			src: '/api/cloudinary?url=f_auto,q_auto/nwpzvterfogwtna1h8zm',
 			alt: 'Logo del cliente Liverpool',
 		},
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/lh1tvcvau5lwjmdivt3z',
+			src: '/api/cloudinary?url=f_auto,q_auto/lh1tvcvau5lwjmdivt3z',
 			alt: 'Logo del cliente Milano',
 		},
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/vmtnro2i0n42jbmrqtof',
+			src: '/api/cloudinary?url=f_auto,q_auto/vmtnro2i0n42jbmrqtof',
 			alt: 'Logo del cliente Punto Blanco',
 		},
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/hzkklvuxxtaqao7gqmab',
+			src: '/api/cloudinary?url=f_auto,q_auto/hzkklvuxxtaqao7gqmab',
 			alt: 'Logo del cliente Sara Lee',
 		},
 		{
-			src: 'https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/xx1t5nioolxdutc3qze9',
+			src: '/api/cloudinary?url=f_auto,q_auto/xx1t5nioolxdutc3qze9',
 			alt: 'Logo del cliente Woolworth',
 		},
 	]
@@ -64,6 +68,7 @@ export default function Customers() {
 									sizes='(max-width: 768px) 128px, (max-width: 1200px) 160px, 200px'
 									quality={100}
 									loading='lazy'
+									unoptimized={!cookiesAccepted}
 									className='object-contain'
 								/>
 							</div>

@@ -16,7 +16,7 @@ export default function Hero() {
 				<motion.h2
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
-					transition={{ duration: 1 }}
+					transition={{ duration: 0.3 }}
 					className='!text-6xl max-md:!text-5xl max-sm:!text-4xl'
 				>
 					Ropa que fluye contigo, porque{' '}
@@ -28,8 +28,8 @@ export default function Hero() {
 					initial={{ scale: 0, originY: 1, originX: 0.2 }}
 					animate={{ scale: 1 }}
 					transition={{
-						duration: 1,
-						delay: 0.5,
+						duration: 0.3,
+						delay: 0.15,
 						type: 'spring',
 						stiffness: 200,
 						damping: 16,

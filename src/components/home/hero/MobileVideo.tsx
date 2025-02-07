@@ -10,6 +10,10 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 
 export default function MobileVideo() {
+	const cookiesAccepted =
+		typeof window !== 'undefined' &&
+		localStorage.getItem('cookiesAccepted') === 'true'
+
 	return (
 		<Link
 			href='https://www.instagram.com/share/BAHM_4n_DK'
@@ -28,12 +32,13 @@ export default function MobileVideo() {
 						<div className='z-10 flex items-center justify-between'>
 							<div className='flex items-center justify-center gap-2 text-sm font-semibold text-white'>
 								<Image
-									src='https://res.cloudinary.com/dtvpssenl/image/upload/f_auto,q_auto/rzapbwdi08ddruhmentb'
+									src='/api/cloudinary?url=f_auto,q_auto/rzapbwdi08ddruhmentb'
 									width={512}
 									height={512}
 									alt='Logo Viveza Instagram'
 									quality={90}
 									priority
+									unoptimized={!cookiesAccepted}
 									className='h-8 w-8 rounded-full object-cover'
 								/>
 								<span>vivezatextil</span>
@@ -99,11 +104,11 @@ export default function MobileVideo() {
 						className='rounded-xl'
 					>
 						<source
-							src='https://res.cloudinary.com/dtvpssenl/video/upload/f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
+							src='/api/cloudinary?type=video&url=f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
 							type='video/webm'
 						/>
 						<source
-							src='https://res.cloudinary.com/dtvpssenl/video/upload/f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
+							src='/api/cloudinary?type=video&url=f_auto:video,q_auto/aj1perv6ky6ny4nedrnx'
 							type='video/mp4'
 						/>
 						Tu navegador no es compatible con este video.
