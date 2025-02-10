@@ -18,7 +18,7 @@ export default function RootLayout({
 	return (
 		<html lang='es-MX'>
 			<body
-				className={`${clashGrotesk.variable} ${generalSans.variable} overflow-x-hidden bg-background selection:bg-[#00aae2] selection:text-cyan-950`}
+				className={`${clashGrotesk.variable} ${generalSans.variable} overflow-x-hidden bg-background selection:bg-primary selection:text-cyan-950`}
 			>
 				<Header />
 

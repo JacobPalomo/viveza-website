@@ -12,7 +12,7 @@ export default function Hero() {
 		>
 			<MobileVideo />
 
-			<div className='absolute top-[50%] right-[10%] z-10 flex w-1/3 -translate-y-[50%] flex-col gap-10 max-md:right-[inherit] max-md:left-[10%] max-md:w-1/2 max-sm:relative max-sm:right-auto max-sm:left-auto max-sm:w-full max-sm:px-6'>
+			<div className='absolute top-[50%] right-[10%] z-10 flex w-1/3 -translate-y-[50%] flex-col gap-10 max-md:right-[5%] max-md:left-[inherit] max-md:w-1/2 max-sm:relative max-sm:right-auto max-sm:left-auto max-sm:w-full max-sm:px-8'>
 				<motion.h2
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
@@ -20,8 +20,7 @@ export default function Hero() {
 					className='!text-6xl max-md:!text-5xl max-sm:!text-4xl'
 				>
 					Ropa que fluye contigo, porque{' '}
-					<span className='text-[#00aae2]'>la comodidad no tiene bordes</span>.{' '}
-					😉
+					<span className='text-primary'>la comodidad no tiene bordes</span>. 😉
 				</motion.h2>
 
 				<motion.div
@@ -37,7 +36,7 @@ export default function Hero() {
 				>
 					<Link
 						href='/contacto'
-						className='!w-[max-content] cursor-pointer rounded-lg !bg-[#00aae2] px-6 py-3 font-medium'
+						className='!w-[max-content] cursor-pointer rounded-lg bg-primary px-6 py-3 font-medium text-white'
 					>
 						Ponerse en contacto
 					</Link>

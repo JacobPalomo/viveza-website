@@ -3,6 +3,8 @@
 @theme {
 	--font-clash-grotesk: var(--clash-grotesk-font);
 	--color-background: #f5f7fa;
+	--color-primary: #2ca8df;
+	--color-secondary: #3a3a3a;
 }
 
 *,
@@ -15,7 +17,7 @@
 	line-height: calc(1em + 0.5rem);
 	margin: 0;
 	scrollbar-width: thin;
-	scrollbar-color: #00aae2 var(--color-background);
+	scrollbar-color: var(--color-primary) var(--color-background);
 	scroll-behavior: smooth;
 }
 
@@ -24,6 +26,7 @@ body {
 	font-size: 1.125rem;
 	-webkit-font-smoothing: antialiased;
 	background-color: white;
+	color: var(--color-secondary);
 }
 
 img,
@@ -102,7 +105,7 @@ strong {
 	right: 0;
 	background: radial-gradient(
 			circle at 50% 0%,
-			rgba(0, 170, 226, 1) 0%,
+			var(--color-primary) 0%,
 			rgba(0, 170, 226, 0) 100%
 		),
 		url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%0A%3E%3Cdefs%3E%3Cfilter id='grainy'%3E%3CfeTurbulence type='turbulence' baseFrequency='2' /%3E%3CfeComposite operator='in' in2='SourceGraphic' result='monoNoise' /%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23grainy)' /%3E%3C/svg%3E%0A");

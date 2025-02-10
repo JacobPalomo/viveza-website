@@ -39,19 +39,19 @@ const Textarea: React.FC<Props> = ({
 					{...register}
 					maxLength={maxLength}
 					className={clsx([
-						'peer h-auto w-full resize-none rounded-lg border-[1.5px] border-gray-300 px-3 py-2 ring-4 ring-transparent outline-0 transition-all duration-300 focus:bg-[#00aae2]/5 focus:ring-[#00aae2]/20',
+						'peer h-auto w-full resize-none rounded-lg border-[1.5px] border-gray-300 px-3 py-2 ring-4 ring-transparent outline-0 transition-all duration-300 focus:bg-primary/5 focus:ring-primary/20',
 						{
 							'border-red-300 bg-red-500/5 text-red-600 selection:bg-red-500 selection:text-red-100 focus:border-red-500 focus:bg-red-500/5 focus:ring-red-500/20':
 								errorMessage,
 						},
-						{ 'focus:border-[#00aae2]': !errorMessage },
+						{ 'focus:border-primary': !errorMessage },
 					])}
 				/>
 				<span
 					className={clsx([
 						'text-base font-medium text-gray-400 transition-colors duration-200',
 						{ 'text-red-600': errorMessage },
-						{ 'peer-focus:text-[#00aae2]': !errorMessage },
+						{ 'peer-focus:text-primary': !errorMessage },
 					])}
 				>
 					{label}

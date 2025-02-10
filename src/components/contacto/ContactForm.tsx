@@ -71,7 +71,7 @@ export default function ContactForm() {
 
 	return (
 		<section className='z-10 flex flex-col items-center'>
-			<h2 className='!mb-40 max-w-1/2 !text-6xl'>
+			<h2 className='!mb-40 max-w-1/2 !text-6xl max-md:!text-5xl max-sm:max-w-full max-sm:px-8 max-sm:!text-5xl'>
 				<motion.span
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
@@ -83,7 +83,7 @@ export default function ContactForm() {
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
 					transition={{ duration: 0.3, delay: 0.5 }}
-					className='text-[#00aae2]'
+					className='text-primary'
 				>
 					nosotros nos pondremos en contacto contigo
 				</motion.span>
@@ -147,11 +147,11 @@ export default function ContactForm() {
 				</FormButton>
 			</Form>
 
-			<p className='!mt-10'>
+			<p className='!mt-10 max-sm:px-9'>
 				Alternativamente puedes dejarnos un mensaje en{' '}
 				<a
 					href='mailto:ventas@vivezatextil.com'
-					className='text-[#00aae2] underline underline-offset-2'
+					className='text-primary underline underline-offset-2'
 				>
 					ventas@vivezatextil.com
 				</a>

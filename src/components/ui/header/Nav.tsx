@@ -5,7 +5,7 @@ interface Props {
 
 const HeaderNav: React.FC<Props> = ({ children, className }) => {
 	return (
-		<nav>
+		<nav className='col-start-2'>
 			<ul
 				className={`flex h-full list-none items-center justify-center gap-4 ${className}`}
 			>

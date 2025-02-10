@@ -9,7 +9,7 @@ export default function Features() {
 		<section className='relative z-[2] grid min-h-screen w-full grid-cols-3 grid-rows-4 gap-1 bg-background p-10 max-md:flex max-md:flex-col max-md:gap-10 max-md:px-4 max-md:py-10'>
 			<div className='sticky top-36 bottom-10 col-start-1 col-end-2 row-start-1 row-end-3 flex flex-col justify-center gap-4 rounded-[21px] bg-white p-6 shadow-lg max-md:relative max-md:top-[inherit] max-md:bottom-[inherit]'>
 				<h3 className='!text-4xl'>
-					Calidad <span className='text-[#00aae2]'>Premium</span>
+					Calidad <span className='text-primary'>Premium</span>
 				</h3>
 				<p>Procesos innovadores con tecnología avanzada en textiles.</p>
 				<Image
@@ -27,7 +27,7 @@ export default function Features() {
 
 			<div className='sticky top-36 col-start-2 col-end-3 row-start-2 row-end-4 flex flex-col justify-center gap-4 rounded-[21px] bg-white p-6 shadow-lg max-md:relative max-md:top-[inherit] max-md:bottom-[inherit]'>
 				<h3 className='!text-4xl'>
-					Diseño <span className='text-[#00aae2]'>sin Costuras</span>
+					Diseño <span className='text-primary'>sin Costuras</span>
 				</h3>
 				<p>Ropa diseñada para la máxima comodidad y frescura.</p>
 				<Image
@@ -45,7 +45,7 @@ export default function Features() {
 
 			<div className='sticky top-36 col-start-3 col-end-4 row-start-3 row-end-5 flex flex-col justify-center gap-4 rounded-[21px] bg-white p-6 shadow-lg max-md:relative max-md:top-[inherit] max-md:bottom-[inherit]'>
 				<h3 className='!text-4xl'>
-					Equipo <span className='text-[#00aae2]'>Dedicado</span>
+					Equipo <span className='text-primary'>Dedicado</span>
 				</h3>
 				<p>Un equipo apasionado que crea productos de alto rendimiento.</p>
 				<Image

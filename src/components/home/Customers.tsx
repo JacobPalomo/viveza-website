@@ -16,33 +16,33 @@ export default function Customers() {
 
 	const logos: CustomerLogo[] = [
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/u8cigji1vrnzbe6oeaar',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-coppel',
 			alt: 'Logo del cliente Coppel',
 		},
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/nwpzvterfogwtna1h8zm',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-liverpool',
 			alt: 'Logo del cliente Liverpool',
 		},
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/lh1tvcvau5lwjmdivt3z',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-milano',
 			alt: 'Logo del cliente Milano',
 		},
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/vmtnro2i0n42jbmrqtof',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-punto-blanco',
 			alt: 'Logo del cliente Punto Blanco',
 		},
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/hzkklvuxxtaqao7gqmab',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-sara-lee',
 			alt: 'Logo del cliente Sara Lee',
 		},
 		{
-			src: '/api/cloudinary?url=f_auto,q_auto/xx1t5nioolxdutc3qze9',
+			src: '/api/cloudinary?url=f_auto,q_auto/cliente-woolworth',
 			alt: 'Logo del cliente Woolworth',
 		},
 	]
 
 	return (
-		<section className='customers-carousel relative z-[2] w-full overflow-hidden bg-[#00aae2] py-8'>
+		<section className='customers-carousel relative z-30 w-full overflow-hidden bg-primary py-8'>
 			<BackdropBlur
 				direction='to right'
 				className='absolute z-[3] h-full w-1/12'

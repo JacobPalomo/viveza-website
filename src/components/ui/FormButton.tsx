@@ -16,8 +16,8 @@ const FormButton: React.FC<Props> = ({ isSubmitting, success, children }) => {
 			whileHover={isSubmitting || success ? {} : { scale: 1.05 }}
 			whileTap={isSubmitting || success ? {} : { scale: 0.9 }}
 			className={clsx([
-				'flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-[#00aae2] px-3 py-2 font-bold transition-colors duration-200',
-				{ 'bg-[#00aae2]/50': isSubmitting },
+				'flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-primary px-3 py-2 font-bold transition-colors duration-200',
+				{ 'bg-primary/50': isSubmitting },
 			])}
 		>
 			{success ? (
