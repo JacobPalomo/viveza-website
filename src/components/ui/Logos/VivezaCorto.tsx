@@ -12,7 +12,7 @@ const Logo: React.FC<Props> = ({ className, color = 'normal' }) => {
 				viewBox='0 0 326.7 80.6'
 				role='img'
 				focusable='false'
-				className={`${className}`}
+				className={`transition-all duration-300 ${className}`}
 			>
 				<path
 					className='cls-1'

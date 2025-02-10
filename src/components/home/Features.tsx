@@ -6,7 +6,7 @@ export default function Features() {
 		localStorage.getItem('cookiesAccepted') === 'true'
 
 	return (
-		<section className='relative z-[2] grid min-h-screen w-full grid-cols-3 grid-rows-4 gap-1 bg-background p-10 max-md:flex max-md:flex-col max-md:gap-10 max-md:px-4 max-md:py-10'>
+		<section className='relative z-20 grid min-h-screen w-full grid-cols-3 grid-rows-4 gap-1 bg-background p-10 max-md:flex max-md:flex-col max-md:gap-10 max-md:px-4 max-md:py-10'>
 			<div className='sticky top-36 bottom-10 col-start-1 col-end-2 row-start-1 row-end-3 flex flex-col justify-center gap-4 rounded-[21px] bg-white p-6 shadow-lg max-md:relative max-md:top-[inherit] max-md:bottom-[inherit]'>
 				<h3 className='!text-4xl'>
 					Calidad <span className='text-primary'>Premium</span>

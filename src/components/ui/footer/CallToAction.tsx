@@ -1,4 +1,7 @@
-import Button from '@/components/ui/Button'
+'use client'
+
+import { motion } from 'motion/react'
+import Link from 'next/link'
 
 export function CallToAction() {
 	return (
@@ -11,7 +14,18 @@ export function CallToAction() {
 					</p>
 				</div>
 
-				<Button>Ponerse en contacto</Button>
+				<motion.div
+					whileHover={{ scale: 1.1 }}
+					whileTap={{ scale: 0.8 }}
+					className={`h-12 w-max cursor-pointer justify-center rounded-lg bg-white px-6 text-secondary`}
+				>
+					<Link
+						href='/contacto'
+						className='relative flex h-full w-max items-center justify-center font-[500]'
+					>
+						Ponerse en contacto
+					</Link>
+				</motion.div>
 			</div>
 		</section>
 	)

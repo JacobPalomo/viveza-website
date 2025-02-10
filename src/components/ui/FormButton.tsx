@@ -42,9 +42,7 @@ const FormButton: React.FC<Props> = ({ isSubmitting, success, children }) => {
 					className='animate-spin'
 				/>
 			) : (
-				<span className='text-base font-semibold text-cyan-950'>
-					{children}
-				</span>
+				<span className='text-base font-medium text-white'>{children}</span>
 			)}
 		</motion.button>
 	)

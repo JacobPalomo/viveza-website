@@ -46,17 +46,17 @@ export default function Header() {
 			{/* Desktop header */}
 			<header className='absolute top-0 max-md:hidden'>
 				<div className='flex items-center justify-between p-6 lg:px-8'>
-					<Link
-						href='/'
-						aria-label='Viveza Textil'
-						className='fixed top-8 right-0 left-0 z-50 !ml-12 w-max cursor-pointer'
-					>
-						<h1 className='w-max'>
+					<h1 className='w-max'>
+						<Link
+							href='/'
+							aria-label='Viveza Textil'
+							className='fixed top-8 right-0 left-0 z-50 !ml-12 w-max cursor-pointer'
+						>
 							<Logo className='block h-10 w-auto fill-current' />
-						</h1>
-					</Link>
+						</Link>
+					</h1>
 					<div
-						className='fixed top-8 right-0 left-0 z-40 grid min-h-12 w-full grid-cols-[1fr_2fr_1fr] px-12 text-white'
+						className='fixed top-8 right-0 left-0 z-50 grid min-h-12 w-full grid-cols-[1fr_2fr_1fr] px-12 text-white'
 						style={{ mixBlendMode: 'difference' }}
 					>
 						<HeaderNav>
@@ -82,21 +82,21 @@ export default function Header() {
 			{/* Tablet & Mobile Header */}
 			<header className='absolute top-0 min-md:hidden'>
 				<div className='flex items-center justify-between p-4'>
-					<Link
-						href='/'
-						aria-label='Viveza Textil'
-						className='fixed top-8 right-0 left-0 z-50 !ml-8 w-max cursor-pointer'
-					>
-						<h1>
+					<h1>
+						<Link
+							href='/'
+							aria-label='Viveza Textil'
+							className='fixed top-8 right-0 left-0 z-50 !ml-8 w-max cursor-pointer'
+						>
 							<Logo
 								className='block h-10 w-auto fill-current'
 								color={isOpen ? 'white' : 'normal'}
 							/>
-						</h1>
-					</Link>
+						</Link>
+					</h1>
 
 					<div
-						className='fixed top-8 right-0 left-0 z-40 grid w-full grid-cols-2 px-6 text-white'
+						className='fixed top-8 right-0 left-0 z-50 grid w-full grid-cols-2 px-6 text-white'
 						style={{ mixBlendMode: 'difference' }}
 					>
 						<button
@@ -112,14 +112,14 @@ export default function Header() {
 					initial={false}
 					animate={isOpen ? 'open' : 'closed'}
 					variants={sidebarVariants}
-					className='fixed top-0 right-0 bottom-0 z-30 h-max w-full border-b-2 border-white/75 bg-gradient-to-b from-primary from-5% to-transparent p-8 pt-30 backdrop-blur-md'
+					className='fixed top-0 right-0 bottom-0 z-40 h-max w-full border-b-2 border-white/75 bg-gradient-to-b from-primary from-5% to-transparent p-8 pt-30 backdrop-blur-md'
 				>
 					<ul className='!space-y-8 text-lg text-cyan-950'>
 						<li>
 							<Link
 								href='/'
 								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 hover:underline'
+								className='flex w-full items-center gap-2 text-white hover:underline'
 							>
 								<IconHome /> Inicio
 							</Link>
@@ -128,7 +128,7 @@ export default function Header() {
 							<Link
 								href='/#conocenos'
 								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 hover:underline'
+								className='flex w-full items-center gap-2 text-white hover:underline'
 							>
 								<IconTelescope /> Conócenos
 							</Link>
@@ -137,7 +137,7 @@ export default function Header() {
 							<Link
 								href='/#marcas'
 								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 hover:underline'
+								className='flex w-full items-center gap-2 text-white hover:underline'
 							>
 								<IconBrandMedium /> Marcas
 							</Link>
@@ -146,7 +146,7 @@ export default function Header() {
 							<Link
 								href='https://blog.vivezasport.com'
 								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 hover:underline'
+								className='flex w-full items-center gap-2 text-white hover:underline'
 							>
 								<IconNotebook /> Blog
 							</Link>
@@ -155,7 +155,7 @@ export default function Header() {
 							<Link
 								href='/contacto'
 								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 hover:underline'
+								className='flex w-full items-center gap-2 text-white hover:underline'
 							>
 								<IconBrandLine />
 								Contacto

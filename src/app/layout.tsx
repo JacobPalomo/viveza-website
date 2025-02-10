@@ -21,9 +21,7 @@ export default function RootLayout({
 				className={`${clashGrotesk.variable} ${generalSans.variable} overflow-x-hidden bg-background selection:bg-primary selection:text-cyan-950`}
 			>
 				<Header />
-
 				{children}
-
 				<Footer />
 			</body>
 		</html>

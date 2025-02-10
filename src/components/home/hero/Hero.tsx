@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import MobileVideo from '@/components/home/hero/MobileVideo'
 import { motion } from 'motion/react'
+import LinkButton from '@/components/ui/LinkButton'
 
 export default function Hero() {
 	return (
@@ -23,24 +23,7 @@ export default function Hero() {
 					<span className='text-primary'>la comodidad no tiene bordes</span>. 😉
 				</motion.h2>
 
-				<motion.div
-					initial={{ scale: 0, originY: 1, originX: 0.2 }}
-					animate={{ scale: 1 }}
-					transition={{
-						duration: 0.3,
-						delay: 0.15,
-						type: 'spring',
-						stiffness: 200,
-						damping: 16,
-					}}
-				>
-					<Link
-						href='/contacto'
-						className='!w-[max-content] cursor-pointer rounded-lg bg-primary px-6 py-3 font-medium text-white'
-					>
-						Ponerse en contacto
-					</Link>
-				</motion.div>
+				<LinkButton href='/contacto'>Ponerse en contacto</LinkButton>
 			</div>
 		</section>
 	)

@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 		const res = new NextResponse(response.body, {
 			status: response.status,
 			headers: {
-				'Content-Type': response.headers.get('Content-Type') || 'image/jpeg',
+				'Content-Type': response.headers.get('Content-Type') || 'image/webp',
 				'Cache-Control': 'public, max-age=31536000, immutable',
 				'Access-Control-Allow-Origin': '*', // Permite uso en cualquier dominio
 				'Set-Cookie': '', // Elimina cookies

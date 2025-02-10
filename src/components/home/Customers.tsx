@@ -42,7 +42,7 @@ export default function Customers() {
 	]
 
 	return (
-		<section className='customers-carousel relative z-30 w-full overflow-hidden bg-primary py-8'>
+		<section className='customers-carousel relative z-10 w-full overflow-hidden bg-primary py-8'>
 			<BackdropBlur
 				direction='to right'
 				className='absolute z-[3] h-full w-1/12'

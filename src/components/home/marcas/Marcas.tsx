@@ -54,12 +54,12 @@ export default function Marcas() {
 				description='Casmi es sinónimo de versatilidad. Ofrecemos soluciones para aquellas mujeres que buscan diseños funcionales y vanguardistas'
 				tags={[
 					{
-						label: 'Prendas seamless',
+						label: 'Seamless',
 						backgroundColor: '#f1cad9',
 						textColor: '#E02881',
 					},
 					{
-						label: 'Líneas de tendencia',
+						label: 'Tendencias',
 						backgroundColor: '#f1cad9',
 						textColor: '#E02881',
 					},
@@ -144,12 +144,12 @@ export default function Marcas() {
 				description='TIAF se especializa en ropa interior y deportiva, con un enfoque en funcionalidad y tecnología. También tiene su linea KIDS.'
 				tags={[
 					{
-						label: 'Ropa deportiva seamless',
+						label: 'Seamless Sport',
 						backgroundColor: '#F0EFE7',
 						textColor: '#695830',
 					},
 					{
-						label: 'Ropa interior masculina',
+						label: 'Ropa interior',
 						backgroundColor: '#F0EFE7',
 						textColor: '#695830',
 					},
