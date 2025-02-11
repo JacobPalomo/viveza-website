@@ -6,7 +6,7 @@ export default function Conocenos() {
 	return (
 		<section
 			id='conocenos'
-			className='relative bottom-0 z-10 min-h-screen w-full bg-background'
+			className='relative z-10 min-h-screen w-full bg-background'
 		>
 			<video
 				autoPlay
@@ -16,7 +16,7 @@ export default function Conocenos() {
 				className='absolute top-0 left-0 z-10 h-full w-full bg-background object-cover'
 			>
 				<source
-					src='/api/cloudinary?type=video&url=f_auto:video,q_auto/rqoaqc7br3sxssk1shwq'
+					src='/api/cdn?type=video&url=f_auto:video,q_auto/video-bg-conocenos'
 					type='video/mp4'
 				/>
 				Tu navegador no es compatible con el video.

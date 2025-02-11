@@ -16,12 +16,12 @@ import {
 } from '@tabler/icons-react'
 import HeaderBackdrop from './Backdrop'
 import { useState } from 'react'
-import { motion } from 'motion/react'
+import { motion, Variants } from 'motion/react'
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false)
 
-	const sidebarVariants = {
+	const sidebarVariants: Variants = {
 		open: {
 			clipPath: `circle(2000px at 110% 0px)`,
 			transition: {
@@ -46,21 +46,21 @@ export default function Header() {
 			{/* Desktop header */}
 			<header className='absolute top-0 max-md:hidden'>
 				<div className='flex items-center justify-between p-6 lg:px-8'>
-					<h1 className='w-max'>
-						<Link
-							href='/'
-							aria-label='Viveza Textil'
-							className='fixed top-8 right-0 left-0 z-50 !ml-12 w-max cursor-pointer'
-						>
-							<Logo className='block h-10 w-auto fill-current' />
-						</Link>
-					</h1>
-					<div
-						className='fixed top-8 right-0 left-0 z-50 grid min-h-12 w-full grid-cols-[1fr_2fr_1fr] px-12 text-white'
-						style={{ mixBlendMode: 'difference' }}
+					<Link
+						href='/'
+						aria-label='Viveza Textil'
+						className='fixed top-8 right-0 left-0 z-[51] !ml-12 w-max cursor-pointer'
 					>
+						<h1 className='w-max'>
+							<Logo
+								className='logo block h-10 w-auto fill-current'
+								color='#ffffff'
+							/>
+						</h1>
+					</Link>
+					<div className='fixed top-8 right-0 left-0 z-50 grid min-h-12 w-full grid-cols-[1fr_2fr_1fr] px-12 text-white'>
 						<HeaderNav>
-							<HeaderLink href='/#hero'>Inicio</HeaderLink>
+							<HeaderLink href='/'>Inicio</HeaderLink>
 							<HeaderLink href='/#conocenos'>Conócenos</HeaderLink>
 							<HeaderLink href='/#marcas'>Marcas</HeaderLink>
 							<HeaderLink href='https://blog.vivezasport.com'>Blog</HeaderLink>
@@ -86,19 +86,16 @@ export default function Header() {
 						<Link
 							href='/'
 							aria-label='Viveza Textil'
-							className='fixed top-8 right-0 left-0 z-50 !ml-8 w-max cursor-pointer'
+							className='fixed top-8 right-0 left-0 z-[51] !ml-8 w-max cursor-pointer'
 						>
 							<Logo
-								className='block h-10 w-auto fill-current'
-								color={isOpen ? 'white' : 'normal'}
+								className='logo block h-10 w-auto fill-current'
+								color='#ffffff'
 							/>
 						</Link>
 					</h1>
 
-					<div
-						className='fixed top-8 right-0 left-0 z-50 grid w-full grid-cols-2 px-6 text-white'
-						style={{ mixBlendMode: 'difference' }}
-					>
+					<div className='fixed top-8 right-0 left-0 z-50 grid w-full grid-cols-2 px-6 text-white'>
 						<button
 							className='col-start-2 col-end-3 self-center justify-self-end p-2'
 							onClick={() => setIsOpen(!isOpen)}

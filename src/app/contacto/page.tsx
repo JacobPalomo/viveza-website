@@ -1,5 +1,8 @@
 import Main from '@/components/ui/Main'
 import ContactForm from '@/components/contacto/ContactForm'
+import { metadata } from '@/app/contacto/metadata'
+
+export { metadata }
 
 export default function ContactPage() {
 	return (

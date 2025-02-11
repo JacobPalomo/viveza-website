@@ -6,18 +6,24 @@ interface Props {
 	isSubmitting: boolean
 	success: boolean
 	children: React.ReactNode
+	disabled?: boolean
 }
 
-const FormButton: React.FC<Props> = ({ isSubmitting, success, children }) => {
+const FormButton: React.FC<Props> = ({
+	isSubmitting,
+	success,
+	children,
+	disabled,
+}) => {
 	return (
 		<motion.button
 			type='submit'
-			disabled={isSubmitting || success}
-			whileHover={isSubmitting || success ? {} : { scale: 1.05 }}
-			whileTap={isSubmitting || success ? {} : { scale: 0.9 }}
+			disabled={isSubmitting || success || disabled}
+			whileHover={isSubmitting || success || disabled ? {} : { scale: 1.05 }}
+			whileTap={isSubmitting || success || disabled ? {} : { scale: 0.9 }}
 			className={clsx([
 				'flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-primary px-3 py-2 font-bold transition-colors duration-200',
-				{ 'bg-primary/50': isSubmitting },
+				{ 'cursor-not-allowed bg-primary/50': isSubmitting || disabled },
 			])}
 		>
 			{success ? (

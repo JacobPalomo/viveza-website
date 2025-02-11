@@ -1,9 +1,10 @@
 interface Props {
 	className?: string
 	color?: string | 'normal'
+	onLoad?: () => void
 }
 
-const Logo: React.FC<Props> = ({ className, color = 'normal' }) => {
+const Logo: React.FC<Props> = ({ className, color = 'normal', onLoad }) => {
 	return (
 		<>
 			<svg
@@ -12,6 +13,7 @@ const Logo: React.FC<Props> = ({ className, color = 'normal' }) => {
 				viewBox='0 0 326.7 80.6'
 				role='img'
 				focusable='false'
+				onLoad={onLoad}
 				className={`transition-all duration-300 ${className}`}
 			>
 				<path

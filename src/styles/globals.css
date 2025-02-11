@@ -114,12 +114,12 @@ strong {
 		rgba(255, 255, 255, 1) 0%,
 		rgba(255, 255, 255, 0) 75%
 	);
+	z-index: 1;
 }
 
 /* Estilo general de la barra de scroll */
 ::-webkit-scrollbar {
 	width: 6px; /* Ancho de la barra */
-	padding: 2px;
 }
 
 /* Estilo del track (fondo de la barra de scroll) */

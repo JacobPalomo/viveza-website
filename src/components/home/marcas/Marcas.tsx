@@ -39,7 +39,7 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='/api/cloudinary?url=f_auto,q_auto/io2c1wefedel21big8vi'
+						src='/api/cdn?url=f_avif,q_auto/bg-casmi'
 						alt='Casmi Background'
 						width={736}
 						height={980}
@@ -84,7 +84,7 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='/api/cloudinary?url=f_auto,q_auto/ob919n1kv8jm1hpevmcn'
+						src='/api/cdn?url=f_avif,q_auto/bg-kinis'
 						alt='Kinis Background'
 						width={736}
 						height={736}
@@ -129,7 +129,7 @@ export default function Marcas() {
 				}
 				backgroundImage={
 					<Image
-						src='/api/cloudinary?url=f_auto,q_auto/mqopn4nevglbesjzysxh'
+						src='/api/cdn?url=f_avif,q_auto/bg-tiaf'
 						alt='TIAF Background'
 						width={5192}
 						height={3466}

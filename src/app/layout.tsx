@@ -1,13 +1,17 @@
-import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import { Viewport } from 'next'
 import { generalSans, clashGrotesk } from '@/styles/fonts'
 import { Footer } from '@/components/ui/footer/Footer'
 import Header from '@/components/ui/header/Header'
 
-export const metadata: Metadata = {
-	title: 'Viveza Textil | Ropa Seamless y Deportiva',
-	description:
-		'Pioneros en el diseño, fabricación y comercialización de ropa interior, exterior y deportiva mediante tecnología Seamless de la más alta calidad.',
+export const viewport: Viewport = {
+	themeColor: '#052f4a',
+	width: 'device-width',
+	initialScale: 1.0,
+	maximumScale: 1.0,
+	userScalable: false,
+	interactiveWidget: 'resizes-content',
+	minimumScale: 1.0,
 }
 
 export default function RootLayout({

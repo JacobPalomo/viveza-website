@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
 	try {
-		// Obtener la URL de la imagen desde la query (?url=...)
 		const { searchParams } = new URL(req.url)
 		const url = searchParams.get('url')
 		const type = searchParams.get('type')
@@ -27,7 +26,7 @@ export async function GET(req: NextRequest) {
 		// Verificar si la imagen existe
 		if (!response.ok) {
 			return NextResponse.json(
-				{ error: 'No se pudo obtener la imagen' },
+				{ success: false, message: 'No se pudo obtener la imagen' },
 				{ status: response.status },
 			)
 		}
@@ -45,7 +44,10 @@ export async function GET(req: NextRequest) {
 
 		return res
 	} catch (error) {
-		console.error('Error al servir imagen de Cloudinary:', error)
-		return NextResponse.json({ error: 'Error interno' }, { status: 500 })
+		console.error('Error al servir imagen:', error)
+		return NextResponse.json(
+			{ success: false, message: 'Error interno' },
+			{ status: 500 },
+		)
 	}
 }
