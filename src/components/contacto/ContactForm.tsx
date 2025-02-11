@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -10,6 +10,7 @@ import Form from '@/components/ui/Form'
 import InputGroup from '@/components/ui/InputGroup'
 import Textarea from '@/components/ui/Textarea'
 import FormButton from '@/components/ui/FormButton'
+import HCaptcha from '@hcaptcha/react-hcaptcha'
 
 type FormData = z.infer<typeof schema>
 
@@ -28,27 +29,42 @@ const schema = z.object({
 		.string()
 		.min(10, 'El mensaje debe tener al menos 10 caracteres.')
 		.max(500, 'El mensaje no puede tener más de 500 caracteres.'),
+	hCaptchaToken: z.string(),
 })
 
-// TODO - Configurar formulario en la api de NextJS para enviar el correo con `nodemailer` con un correo configurado especificamente para enviar correos a los demas desde aquí.
 export default function ContactForm() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
 		reset,
+		setValue,
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 	})
 
+	const [error, setError] = useState<string>('')
 	const [success, setSuccess] = useState<boolean>(false)
+	const [token, setToken] = useState<string>('')
+	const captchaRef = useRef<HCaptcha>(null)
+
+	useEffect(() => {
+		if (token) {
+			setValue('hCaptchaToken', token)
+		}
+	}, [token, setValue])
 
 	async function onSubmit(data: FormData) {
+		if (!token) {
+			setError('Por favor, completa el captcha.')
+			return
+		}
+
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data),
+				body: JSON.stringify({ ...data, hCaptchaToken: token }),
 			})
 
 			const result = await response.json()
@@ -57,15 +73,19 @@ export default function ContactForm() {
 				throw new Error(result.message || 'Error al enviar el mensaje')
 			}
 
-			// Mostrar la palomita y limpiar el formulario
 			setSuccess(true)
-			reset()
+			setToken('') // Resetear el token después de enviar
+			captchaRef.current?.resetCaptcha() // Reiniciar el CAPTCHA
 
-			// Después de 2 segundos, volvemos el botón a su estado original
-			setTimeout(() => setSuccess(false), 2000)
+			setTimeout(() => {
+				reset()
+				setSuccess(false)
+			}, 1500)
 		} catch (error) {
-			console.error(error)
-			alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo.')
+			setError(
+				(error as { success: boolean; message: string }).message ||
+					'Hubo un error al enviar el mensaje. Inténtalo de nuevo.',
+			)
 		}
 	}
 
@@ -139,9 +159,32 @@ export default function ContactForm() {
 					maxLength={500}
 				/>
 
+				<HCaptcha
+					sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
+					languageOverride='es'
+					onExpire={() => setToken('')}
+					onVerify={setToken}
+					size='normal'
+					ref={captchaRef}
+					custom={true}
+				/>
+
+				<motion.p
+					initial={{ opacity: 0, height: 0 }}
+					animate={{
+						opacity: error ? 1 : 0,
+						height: error ? 'auto' : 0,
+					}}
+					transition={{ duration: 0.2 }}
+					className='max-w-full rounded-lg px-2 text-left !text-base text-red-600'
+				>
+					{error}
+				</motion.p>
+
 				<FormButton
 					isSubmitting={isSubmitting}
 					success={success}
+					disabled={!token}
 				>
 					Enviar mensaje
 				</FormButton>
