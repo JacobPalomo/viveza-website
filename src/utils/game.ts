@@ -1,5 +1,7 @@
 import { Scene, Game, Types, AUTO, Math as PhaserMath, Physics } from 'phaser'
 
+const domain = process.env.NEXT_PUBLIC_DOMAIN
+
 class LaMaquinaDescontrolada extends Scene {
 	private machine!: Phaser.GameObjects.Image
 	private clothes!: Physics.Arcade.Group
@@ -20,40 +22,43 @@ class LaMaquinaDescontrolada extends Scene {
 		// Cargar imágenes en pixel art
 		this.load.image(
 			'background',
-			'http://192.168.1.96:3000/game/pixel_factory.png',
+			`https://viveza-website.vercel.app/game/pixel_factory.png`,
 		)
 		this.load.image(
 			'machine',
-			'http://192.168.1.96:3000/game/pixel_sewing_machine.png',
+			`https://viveza-website.vercel.app/game/pixel_sewing_machine.png`,
 		)
 		this.load.image(
 			'defective_tshirt',
-			'http://192.168.1.96:3000/game/pixel_defective_tshirt.png',
+			`https://viveza-website.vercel.app/game/pixel_defective_tshirt.png`,
 		)
-		this.load.image('tshirt', 'http://192.168.1.96:3000/game/pixel_tshirt.png')
+		this.load.image(
+			'tshirt',
+			`https://viveza-website.vercel.app/game/pixel_tshirt.png`,
+		)
 		this.load.image(
 			'defective_leggings',
-			'http://192.168.1.96:3000/game/pixel_defective_leggings.png',
+			`https://viveza-website.vercel.app/game/pixel_defective_leggings.png`,
 		)
 		this.load.image(
 			'leggings',
-			'http://192.168.1.96:3000/game/pixel_leggings.png',
+			`https://viveza-website.vercel.app/game/pixel_leggings.png`,
 		)
 		this.load.image(
 			'defective_underwear',
-			'http://192.168.1.96:3000/game/pixel_defective_underwear.png',
+			`https://viveza-website.vercel.app/game/pixel_defective_underwear.png`,
 		)
 		this.load.image(
 			'underwear',
-			'http://192.168.1.96:3000/game/pixel_underwear.png',
+			`https://viveza-website.vercel.app/game/pixel_underwear.png`,
 		)
 		this.load.image(
 			'pause_button',
-			'http://192.168.1.96:3000/game/pause_button.png',
+			`https://viveza-website.vercel.app/game/pause_button.png`,
 		)
 		this.load.image(
 			'pause_button_pressed',
-			'http://192.168.1.96:3000/game/pause_button_pressed.png',
+			`https://viveza-website.vercel.app/game/pause_button_pressed.png`,
 		)
 	}
 
@@ -219,19 +224,19 @@ class MainMenu extends Scene {
 	preload() {
 		this.load.image(
 			'background',
-			'http://192.168.1.96:3000/game/pixel_factory.png',
+			`https://viveza-website.vercel.app/game/pixel_factory.png`,
 		)
 		this.load.image(
 			'play_button',
-			'http://192.168.1.96:3000/game/play_button.png',
+			`https://viveza-website.vercel.app/game/play_button.png`,
 		)
 		this.load.image(
 			'play_button_pressed',
-			'http://192.168.1.96:3000/game/play_button_pressed.png',
+			`https://viveza-website.vercel.app/game/play_button_pressed.png`,
 		)
 		this.load.image(
 			'game_title',
-			'http://192.168.1.96:3000/game/title_game.png',
+			`https://viveza-website.vercel.app/game/title_game.png`,
 		)
 	}
 
