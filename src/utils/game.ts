@@ -1,4 +1,12 @@
-import { Scene, Game, Types, AUTO, Math as PhaserMath, Physics } from 'phaser'
+import {
+	Scene,
+	Game,
+	Types,
+	AUTO,
+	Math as PhaserMath,
+	Physics,
+	Scale,
+} from 'phaser'
 
 class LaMaquinaDescontrolada extends Scene {
 	private machine!: Phaser.GameObjects.Image
@@ -130,6 +138,11 @@ class LaMaquinaDescontrolada extends Scene {
 			this.scene.pause()
 			this.scene.launch('Tutorial')
 		}
+
+		// Ajustar el tamaño del juego para dispositivos móviles
+		this.scale.scaleMode = Scale.FIT
+		this.scale.parentIsWindow = true
+		this.scale.autoCenter = Phaser.Scale.CENTER_BOTH
 	}
 
 	dropCloth() {
@@ -259,6 +272,10 @@ class MainMenu extends Scene {
 				color: '#fff',
 			})
 			.setOrigin(0.5)
+
+		// Ajustar el tamaño del juego para dispositivos móviles
+		this.scale.scaleMode = Scale.FIT
+		this.scale.autoCenter = Phaser.Scale.CENTER_BOTH
 	}
 }
 
@@ -316,6 +333,10 @@ class PauseMenu extends Scene {
 				color: '#fff',
 			})
 			.setOrigin(1, 0)
+
+		// Ajustar el tamaño del juego para dispositivos móviles
+		this.scale.scaleMode = Scale.FIT
+		// this.scale.pageAlignHorizontally = true
 	}
 
 	checkHighScore(score: number) {
@@ -391,6 +412,10 @@ class GameOver extends Scene {
 			this.scene.stop('LaMaquinaDescontrolada')
 			this.scene.start('MainMenu')
 		})
+
+		// Ajustar el tamaño del juego para dispositivos móviles
+		this.scale.scaleMode = Scale.FIT
+		// this.scale.pageAlignHorizontally = true
 	}
 }
 
@@ -438,6 +463,10 @@ class Tutorial extends Scene {
 			this.scene.stop()
 			this.scene.resume('LaMaquinaDescontrolada')
 		})
+
+		// Ajustar el tamaño del juego para dispositivos móviles
+		this.scale.scaleMode = Scale.FIT
+		// this.scale.pageAlignVertically = true
 	}
 }
 
@@ -447,6 +476,10 @@ const config: Types.Core.GameConfig = {
 	height: 600,
 	physics: { default: 'arcade' },
 	scene: [MainMenu, LaMaquinaDescontrolada, PauseMenu, GameOver, Tutorial],
+	scale: {
+		mode: Scale.FIT,
+		autoCenter: Scale.CENTER_BOTH,
+	},
 }
 
 export function startGame(containerId: string) {

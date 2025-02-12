@@ -16,7 +16,7 @@ const Game = () => {
 		<div
 			id='game-container'
 			ref={gameContainerRef}
-			className='z-10 h-[600px] w-full'
+			className='z-10 h-[600px]'
 		></div>
 	)
 }
