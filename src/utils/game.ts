@@ -1,7 +1,5 @@
 import { Scene, Game, Types, AUTO, Math as PhaserMath, Physics } from 'phaser'
 
-const domain = process.env.NEXT_PUBLIC_DOMAIN
-
 class LaMaquinaDescontrolada extends Scene {
 	private machine!: Phaser.GameObjects.Image
 	private clothes!: Physics.Arcade.Group
