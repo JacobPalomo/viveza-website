@@ -17,7 +17,7 @@ const HeroText = () => (
 			animate={{ opacity: 1, x: 0 }}
 			className='flex flex-col items-start justify-center gap-1'
 		>
-			<p className='!text-sm tracking-widest text-white'>SEAMLESS</p>
+			<p className='!text-sm !tracking-widest text-white'>SEAMLESS</p>
 			<div className='h-[1.5px] w-12 bg-white'></div>
 		</motion.div>
 
@@ -59,7 +59,7 @@ const HeroText = () => (
 			className='flex w-full flex-col items-start justify-center gap-4'
 		>
 			<div className='!mb-2 flex w-full flex-col items-end justify-center gap-1'>
-				<p className='!text-sm tracking-widest text-white'>
+				<p className='!text-sm !tracking-widest text-white'>
 					NUESTROS COLABORADORES
 				</p>
 				<div className='h-[1.5px] w-12 bg-white'></div>

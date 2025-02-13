@@ -101,7 +101,9 @@ const CustomerLogos = () => {
 						src={logo.src}
 						alt={logo.alt}
 						fill
+						sizes='(max-width: 768px) 50vw, (min-width: 769px) 33vw'
 						className='object-contain'
+						priority
 					/>
 				</motion.div>
 			))}
