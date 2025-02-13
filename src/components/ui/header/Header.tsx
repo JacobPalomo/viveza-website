@@ -5,7 +5,6 @@ import Logo from '@/components/ui/Logos/VivezaCorto'
 import HeaderLink from '@/components/ui/header/Link'
 import HeaderNav from '@/components/ui/header/Nav'
 import {
-	IconArrowNarrowRight,
 	IconBrandLine,
 	IconBrandMedium,
 	IconHome,
@@ -14,6 +13,7 @@ import {
 	IconTelescope,
 	IconX,
 } from '@tabler/icons-react'
+import { RiArrowRightUpLine } from 'react-icons/ri'
 import HeaderBackdrop from './Backdrop'
 import { useState } from 'react'
 import { motion, Variants } from 'motion/react'
@@ -68,11 +68,14 @@ export default function Header() {
 
 						<Link
 							href='/contacto'
-							className='col-start-3 col-end-4 flex h-full w-full items-center justify-end gap-2 self-center justify-self-end text-base'
+							className='col-start-3 col-end-4 flex h-max w-max items-center justify-end gap-2 self-center justify-self-end rounded-full border-[1.5px] border-white py-1 pr-2 pl-3 text-base transition-all transition-discrete duration-200 hover:scale-105 active:scale-100'
 						>
 							<span className='uppercase'>Contacto</span>
 
-							<IconArrowNarrowRight />
+							<RiArrowRightUpLine
+								size={24}
+								color='white'
+							/>
 						</Link>
 					</div>
 				</div>
