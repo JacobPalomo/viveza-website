@@ -61,6 +61,8 @@ p {
 	font-size: 1.125rem;
 	hyphens: auto;
 	text-wrap: pretty;
+	font-weight: 300 !important;
+	letter-spacing: 0.02rem;
 }
 
 h1,
@@ -70,7 +72,7 @@ h4,
 h5,
 h6 {
 	font-family: var(--clash-grotesk-font);
-	font-weight: 500;
+	font-weight: 400;
 	text-wrap: balance;
 }
 
@@ -87,7 +89,7 @@ h3 {
 }
 
 strong {
-	font-weight: 400;
+	font-weight: 500;
 }
 
 #root,
@@ -137,4 +139,12 @@ strong {
 /* Cambia el color cuando se pasa el mouse sobre la barra */
 ::-webkit-scrollbar-thumb:hover {
 	background: #00aae2;
+}
+
+#game-container {
+	margin: auto;
+}
+
+#game-container canvas {
+	margin: auto;
 }
