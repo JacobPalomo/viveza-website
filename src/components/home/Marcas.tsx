@@ -434,7 +434,7 @@ function MarcasMobile() {
 						{/* Cada slide ocupa el ancho completo del viewport */}
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_auto/bg-tiaf`}
+								src={`/api/cdn?url=/f_avif,q_90/bg-tiaf`}
 								alt='TIAF'
 								width={3838}
 								height={5176}
@@ -443,7 +443,7 @@ function MarcasMobile() {
 						</div>
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_auto/bg-kinis`}
+								src={`/api/cdn?url=/f_avif,q_90/bg-kinis`}
 								alt='KINIS'
 								width={3858}
 								height={5272}
@@ -452,7 +452,7 @@ function MarcasMobile() {
 						</div>
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_auto/bg-casmi`}
+								src={`/api/cdn?url=/f_avif,q_90/bg-casmi`}
 								alt='CASMI'
 								width={3839}
 								height={5176}
