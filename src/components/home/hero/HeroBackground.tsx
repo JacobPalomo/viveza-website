@@ -3,7 +3,7 @@ import { memo } from 'react'
 
 const HeroBackground = () => (
 	<Image
-		src='/api/cdn?url=f_avif,q_auto/hero'
+		src={`/api/cdn?url=/f_avif,q_90/hero`}
 		alt='background image'
 		width={2667}
 		height={4000}

@@ -77,6 +77,7 @@ const CustomerLogos = () => {
 	)
 
 	useEffect(() => {
+		setStartIndex(0)
 		const interval = setInterval(() => {
 			setStartIndex((prev) => (prev + logosToShow) % logos.length)
 		}, 4000)
