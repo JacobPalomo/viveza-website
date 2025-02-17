@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import TitleTag from '../ui/TitleTag'
 import Link from 'next/link'
 import { RiArrowRightUpLine } from 'react-icons/ri'
+import Image from 'next/image'
 
 export default function Conocenos() {
 	return (
@@ -28,10 +29,14 @@ export default function Conocenos() {
 			</video>
 			<div className='absolute top-0 left-0 z-[9] h-full w-full bg-background object-cover'>
 				{/* Fallback imagen si el video no se puede cargar */}
-				<img
+				<Image
 					src='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
+					alt='Fallback video image'
+					width={1800}
+					height={1012}
+					loading='lazy'
 					className='h-full w-full object-cover'
-					alt='Fondo estático'
+					aria-hidden
 				/>
 			</div>
 
