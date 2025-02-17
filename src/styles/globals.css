@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 
 @theme {
-	--font-clash-grotesk: var(--clash-grotesk-font);
 	--color-background: #f5f7fa;
 	--color-primary: #2ca8df;
 	--color-secondary: #3a3a3a;
+	--color-tiaf: #bf9f6b;
+	--color-kinis: #db7d8b;
+	--color-casmi: #e02881;
 }
 
 *,
@@ -23,7 +25,7 @@
 
 body {
 	font-family: var(--general-sans-font);
-	font-size: 1.125rem;
+	font-size: 1.25rem;
 	-webkit-font-smoothing: antialiased;
 	background-color: white;
 	color: var(--color-secondary);
@@ -58,7 +60,7 @@ h6 {
 }
 
 p {
-	font-size: 1.125rem;
+	font-size: 1.25rem;
 	hyphens: auto;
 	text-wrap: pretty;
 	font-weight: 300 !important;
@@ -77,19 +79,20 @@ h6 {
 }
 
 h1 {
-	font-size: 3rem;
+	font-size: 3.75rem;
 }
 
 h2 {
-	font-size: 2.25rem;
+	font-size: 3rem;
 }
 
 h3 {
-	font-size: 1.5rem;
+	font-size: 2.25rem;
 }
 
 strong {
 	font-weight: 500;
+	color: var(--color-primary);
 }
 
 #root,
@@ -105,7 +108,8 @@ strong {
 	top: 0;
 	left: 0;
 	right: 0;
-	background: radial-gradient(
+	background:
+		radial-gradient(
 			circle at 50% 0%,
 			var(--color-primary) 0%,
 			rgba(0, 170, 226, 0) 100%
@@ -138,7 +142,7 @@ strong {
 
 /* Cambia el color cuando se pasa el mouse sobre la barra */
 ::-webkit-scrollbar-thumb:hover {
-	background: #00aae2;
+	background: var(--color-primary);
 }
 
 #game-container {
