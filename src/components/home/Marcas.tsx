@@ -91,7 +91,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 
 	// Suscribirse a scrollYProgress para actualizar activeSection si no hay imagen intersectando
 	useEffect(() => {
-		const unsubscribe = scrollYProgress.onChange((progress) => {
+		const unsubscribe = scrollYProgress.on('change', (progress) => {
 			if (!hasIntersecting) {
 				if (progress < 0.1) {
 					setActiveSection('intro')
@@ -124,8 +124,15 @@ export default function Marcas({ timestamp }: MarcasProps) {
 							className='!mb-1'
 						/>
 					),
-					subtitle: 'Descubre la innovación de TIAF',
-					description: 'Aquí va la descripción exclusiva para TIAF...',
+					subtitle: 'Superación sin límites',
+					description: (
+						<span>
+							TIAF se especializa en ropa deportiva e interior, con un enfoque
+							en funcionalidad y tecnología. Su catálogo incluye diversas
+							líneas, como <strong>Menswear</strong>,{' '}
+							<strong>Womenswear</strong> y <strong>Kids</strong>.
+						</span>
+					),
 				}
 			case 'kinis':
 				return {
@@ -135,8 +142,9 @@ export default function Marcas({ timestamp }: MarcasProps) {
 							className='!mb-1'
 						/>
 					),
-					subtitle: 'Descubre la energía de KINIS',
-					description: 'Aquí va la descripción exclusiva para KINIS...',
+					subtitle: 'Sensualidad en movimiento',
+					description:
+						'KINIS redefine la ropa interior femenina con diseños que combinan tecnología seamless, comodidad y estilo.',
 				}
 			case 'casmi':
 				return {
@@ -146,8 +154,9 @@ export default function Marcas({ timestamp }: MarcasProps) {
 							className='!mb-1'
 						/>
 					),
-					subtitle: 'Descubre la elegancia de CASMI',
-					description: 'Aquí va la descripción exclusiva para CASMI...',
+					subtitle: 'Libertad de estilo',
+					description:
+						'Casmi es sinónimo de versatilidad. Diseñamos prendas para mujeres que buscan comodidad sin renunciar a la innovación y la funcionalidad.',
 				}
 			default:
 				return {
