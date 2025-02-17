@@ -1,20 +1,20 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react'
+
 import CasmiLogo from '@/components/ui/logos/Casmi'
 import KinisLogo from '@/components/ui/logos/Kinis'
 import TiafLogo from '@/components/ui/logos/Tiaf'
 import TitleTag from '@/components/ui/TitleTag'
 import ParallaxImage from '@/components/ui/ParallaxImage'
-import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react'
-import { useEffect, useRef, useState } from 'react'
 
 type Section = 'intro' | 'tiaf' | 'kinis' | 'casmi'
 
-interface MarcasProps {
-	timestamp: string
-}
-
-export default function Marcas({ timestamp }: MarcasProps) {
+/* ──────────────────────────────────────────────────────────────── */
+/*                         VERSIÓN DESKTOP                          */
+/* ──────────────────────────────────────────────────────────────── */
+function MarcasDesktop() {
 	// Referencia a la sección para mapear el scroll en X
 	const sectionRef = useRef<HTMLElement>(null)
 	// Referencia al contenedor del texto para centrarlo inicialmente
@@ -170,8 +170,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 							<strong>Kinis</strong> y <strong>TIAF</strong>. Cada una está
 							diseñada para satisfacer necesidades específicas, abarcando desde{' '}
 							<strong>ropa interior </strong>
-							femenina hasta <strong>ropa deportiva</strong> de alto
-							rendimiento.
+							hasta <strong>ropa deportiva</strong> de alto rendimiento.
 						</span>
 					),
 				}
@@ -191,7 +190,8 @@ export default function Marcas({ timestamp }: MarcasProps) {
 		<section
 			id='marcas'
 			ref={sectionRef}
-			className='relative grid min-h-screen w-full grid-cols-2 grid-rows-4'
+			// Esta versión se muestra solo en pantallas md en adelante
+			className='relative hidden min-h-screen w-full grid-cols-2 grid-rows-4 md:grid'
 		>
 			{/* Contenedor del texto */}
 			<div className='relative col-start-1 col-end-2 row-start-1 row-end-5 justify-self-center'>
@@ -210,9 +210,9 @@ export default function Marcas({ timestamp }: MarcasProps) {
 						>
 							<div className='flex w-full flex-col items-start justify-center gap-2'>
 								<TitleTag>{title}</TitleTag>
-								<h2 className='!text-5xl !font-normal text-secondary max-md:!text-4xl max-sm:!text-3xl'>
+								<h3 className='!text-5xl !font-normal text-secondary max-md:!text-4xl max-sm:!text-3xl'>
 									{subtitle}
-								</h2>
+								</h3>
 							</div>
 							<p className='!mt-6 text-justify'>{description}</p>
 						</motion.div>
@@ -226,7 +226,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 				className='col-start-2 col-end-3 row-start-2 row-end-3 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/v${timestamp}/f_avif,q_auto/bg-tiaf`}
+					src={`/api/cdn?url=/f_avif,q_auto/bg-tiaf`}
 					alt='TIAF'
 					width={3838}
 					height={5176}
@@ -238,7 +238,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 				className='col-start-2 col-end-3 row-start-3 row-end-4 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/v${timestamp}/f_avif,q_auto/bg-kinis`}
+					src={`/api/cdn?url=/f_avif,q_auto/bg-kinis`}
 					alt='KINIS'
 					width={3858}
 					height={5272}
@@ -250,7 +250,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 				className='col-start-2 col-end-3 row-start-4 row-end-5 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/v${timestamp}/f_avif,q_auto/bg-casmi`}
+					src={`/api/cdn?url=/f_avif,q_auto/bg-casmi`}
 					alt='CASMI'
 					width={3839}
 					height={5176}
@@ -258,5 +258,222 @@ export default function Marcas({ timestamp }: MarcasProps) {
 				/>
 			</div>
 		</section>
+	)
+}
+
+/* ──────────────────────────────────────────────────────────────── */
+/*                         VERSIÓN MÓVIL                           */
+/* ──────────────────────────────────────────────────────────────── */
+function MarcasMobile() {
+	// Ref de la sección para el scroll
+	const sectionRef = useRef<HTMLElement>(null)
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ['start start', 'end end'],
+	})
+
+	// Obtenemos el ancho y alto del viewport
+	const [vw, setVw] = useState<number>(0)
+	const [vh, setVh] = useState<number>(0)
+	useEffect(() => {
+		setVw(window.innerWidth)
+		setVh(window.innerHeight)
+		const handleResize = () => {
+			setVw(window.innerWidth)
+			setVh(window.innerHeight)
+		}
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	/**
+	 * Definimos un slider horizontal:
+	 * - progress = 0: x = vw (slider a la derecha, fuera de vista)
+	 * - progress = 1: x = -2 * vw (última imagen en vista)
+	 */
+	const horizontalX = useTransform(scrollYProgress, [0, 1], [vw, -2 * vw])
+
+	// Actualizamos la sección activa según el scroll vertical
+	const [activeSection, setActiveSection] = useState<Section>('intro')
+	const [displayedSection, setDisplayedSection] = useState<Section>('intro')
+
+	useEffect(() => {
+		const unsubscribe = scrollYProgress.on('change', (progress) => {
+			if (progress < 0.25) {
+				setActiveSection('intro')
+			} else if (progress < 0.5) {
+				setActiveSection('tiaf')
+			} else if (progress < 0.75) {
+				setActiveSection('kinis')
+			} else {
+				setActiveSection('casmi')
+			}
+		})
+		return () => unsubscribe()
+	}, [scrollYProgress])
+
+	// Retardo para suavizar la animación del texto
+	useEffect(() => {
+		if (activeSection !== displayedSection) {
+			const timeout = setTimeout(() => {
+				setDisplayedSection(activeSection)
+			}, 300)
+			return () => clearTimeout(timeout)
+		}
+	}, [activeSection, displayedSection])
+
+	const getContent = () => {
+		switch (displayedSection) {
+			case 'tiaf':
+				return {
+					title: (
+						<TiafLogo
+							color='var(--color-tiaf)'
+							className='!mb-1'
+						/>
+					),
+					subtitle: 'Superación sin límites',
+					description: (
+						<span>
+							TIAF se especializa en ropa deportiva e interior, con un enfoque
+							en funcionalidad y tecnología. Su catálogo incluye diversas
+							líneas, como <strong>Menswear</strong>,{' '}
+							<strong>Womenswear</strong> y <strong>Kids</strong>.
+						</span>
+					),
+				}
+			case 'kinis':
+				return {
+					title: (
+						<KinisLogo
+							color='var(--color-kinis)'
+							className='!mb-1'
+						/>
+					),
+					subtitle: 'Sensualidad en movimiento',
+					description:
+						'KINIS redefine la ropa interior femenina con diseños que combinan tecnología seamless, comodidad y estilo.',
+				}
+			case 'casmi':
+				return {
+					title: (
+						<CasmiLogo
+							color='var(--color-casmi)'
+							className='!mb-1'
+						/>
+					),
+					subtitle: 'Libertad de estilo',
+					description:
+						'Casmi es sinónimo de versatilidad. Diseñamos prendas para mujeres que buscan comodidad sin renunciar a la innovación y la funcionalidad.',
+				}
+			default:
+				return {
+					title: 'MARCAS',
+					subtitle: 'Descubre nuestra esencia',
+					description: (
+						<span>
+							Nos enorgullece ofrecer productos que combinan{' '}
+							<strong>innovación</strong>, <strong>calidad</strong> y diseño a
+							través de nuestras marcas insignia: <strong>Casmi</strong>,{' '}
+							<strong>Kinis</strong> y <strong>TIAF</strong>.
+						</span>
+					),
+				}
+		}
+	}
+
+	const { title, subtitle, description } = getContent()
+
+	const textVariants = {
+		initial: { opacity: 0, filter: 'blur(4px)' },
+		animate: { opacity: 1, filter: 'blur(0px)', transition: { duration: 0.3 } },
+		exit: { opacity: 0, filter: 'blur(4px)', transition: { duration: 0.3 } },
+	}
+
+	// Definimos la cantidad de segmentos y la altura total de la sección
+	const numSegments = 4
+	const sectionHeight = vh * numSegments
+
+	return (
+		<section
+			id='marcas'
+			ref={sectionRef}
+			// Quitamos el overflow-hidden de la sección para permitir el sticky
+			className='relative w-full md:hidden'
+			style={{ height: sectionHeight }}
+		>
+			<div className='sticky top-0 h-screen pt-35'>
+				{/* Texto superpuesto */}
+				<div className='pointer-events-none flex h-[50%] w-full items-center justify-center'>
+					<AnimatePresence mode='wait'>
+						<motion.div
+							key={displayedSection}
+							variants={textVariants}
+							initial='initial'
+							animate='animate'
+							exit='exit'
+							className='flex-xol flex flex-col justify-center gap-4 px-6 py-10'
+						>
+							<div className='flex flex-col items-start gap-2'>
+								<TitleTag>{title}</TitleTag>
+								<h3 className='!text-3xl font-normal text-secondary'>
+									{subtitle}
+								</h3>
+							</div>
+							<p className='text-justify text-sm'>{description}</p>
+						</motion.div>
+					</AnimatePresence>
+				</div>
+
+				{/* Contenedor "sticky" con overflow-hidden para recortar el slider */}
+				<div className='max-h-[50%] w-full overflow-hidden'>
+					<motion.div
+						className='flex h-full'
+						style={{ x: horizontalX }}
+					>
+						{/* Cada slide ocupa el ancho completo del viewport */}
+						<div className='h-full min-w-screen'>
+							<ParallaxImage
+								src={`/api/cdn?url=/f_avif,q_auto/bg-tiaf`}
+								alt='TIAF'
+								width={3838}
+								height={5176}
+								className='h-full w-full object-cover'
+							/>
+						</div>
+						<div className='h-full min-w-screen'>
+							<ParallaxImage
+								src={`/api/cdn?url=/f_avif,q_auto/bg-kinis`}
+								alt='KINIS'
+								width={3858}
+								height={5272}
+								className='h-full w-full object-cover'
+							/>
+						</div>
+						<div className='h-full min-w-screen'>
+							<ParallaxImage
+								src={`/api/cdn?url=/f_avif,q_auto/bg-casmi`}
+								alt='CASMI'
+								width={3839}
+								height={5176}
+								className='h-full w-full object-cover'
+							/>
+						</div>
+					</motion.div>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+/* ──────────────────────────────────────────────────────────────── */
+/*                      COMPONENTE PRINCIPAL                      */
+/* ──────────────────────────────────────────────────────────────── */
+export default function Marcas() {
+	return (
+		<>
+			<MarcasDesktop />
+			<MarcasMobile />
+		</>
 	)
 }
