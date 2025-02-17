@@ -17,7 +17,7 @@ export default function Home() {
 				<Features />
 			</div>
 			<Conocenos />
-			<Marcas timestamp={timestamp} />
+			<Marcas />
 		</Main>
 	)
 }
