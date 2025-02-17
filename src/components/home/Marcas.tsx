@@ -33,7 +33,7 @@ export default function Marcas({ timestamp }: MarcasProps) {
 			const viewportWidth = window.innerWidth
 			setInitialX((viewportWidth - elementWidth) / 2)
 		}
-	}, [textRef.current])
+	}, [])
 
 	/**
 	 * Mapeamos el scroll para que:
