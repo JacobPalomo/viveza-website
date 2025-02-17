@@ -1,6 +1,9 @@
 'use client'
 
 import { motion } from 'motion/react'
+import TitleTag from '../ui/TitleTag'
+import Link from 'next/link'
+import { RiArrowRightUpLine } from 'react-icons/ri'
 
 export default function Conocenos() {
 	return (
@@ -25,131 +28,118 @@ export default function Conocenos() {
 			<div className='absolute top-0 left-0 h-full w-full bg-black opacity-10' />
 			<div className='relative z-10 flex h-full min-h-screen w-full flex-col items-start justify-end gap-10 p-10 text-white'>
 				<div className='w-2/3 max-w-3xl max-sm:w-full'>
-					<motion.h2
-						initial={{
-							filter: 'blur(16px)',
-							transform: 'translateY(10px) scale(.85)',
-						}}
-						whileInView={{
-							filter: 'blur(0)',
-							transform: 'translateY(0) scale(1)',
-						}}
-						transition={{
-							duration: 0.5,
-							delay: 0,
-							ease: 'linear',
-						}}
-						className='!mb-4'
-					>
-						Conocenos
-					</motion.h2>
+					<div className='!mb-5 flex w-full flex-col items-start justify-center gap-2'>
+						<motion.div
+							initial={{
+								scale: 0.85,
+								translateY: 40,
+								opacity: 0,
+								filter: 'blur(8px)',
+							}}
+							whileInView={{
+								scale: 1,
+								translateY: 0,
+								filter: 'blur(0)',
+								opacity: 1,
+							}}
+							transition={{ duration: 0.3, delay: 0, ease: 'linear' }}
+						>
+							<TitleTag
+								textColor='#fff'
+								divisorColor='#fff'
+							>
+								NOSOTROS
+							</TitleTag>
+						</motion.div>
+						<motion.h2
+							initial={{
+								filter: 'blur(16px)',
+								transform: 'translateY(10px) scale(.85)',
+								opacity: 0,
+							}}
+							whileInView={{
+								filter: 'blur(0)',
+								transform: 'translateY(0) scale(1)',
+								opacity: 1,
+							}}
+							transition={{
+								duration: 0.3,
+								delay: 0.1,
+								ease: 'linear',
+							}}
+							className='!text-5xl !font-normal text-white max-md:!text-4xl max-sm:!text-3xl'
+						>
+							El origen de la comodidad
+						</motion.h2>
+					</div>
 
 					<motion.p
 						initial={{
 							filter: 'blur(8px)',
 							transform: 'translateY(40px) scale(0.85)',
+							opacity: 0,
 						}}
 						whileInView={{
 							filter: 'blur(0)',
 							transform: 'translateY(0) scale(1)',
+							opacity: 1,
 						}}
 						transition={{
 							duration: 0.3,
-							delay: 0.3,
+							delay: 0.2,
 							ease: 'linear',
 						}}
-						className='!text-2xl font-[490]'
+						className='text-justify'
 					>
-						En Viveza Textil, somos pioneros en el diseño, fabricación y
-						comercialización de ropa interior, exterior y deportiva mediante
-						tecnología Seamless de la más alta calidad.
+						En Viveza Textil, con más de 20 años de experiencia, somos pioneros
+						en el diseño, fabricación y comercialización de ropa interior,
+						exterior y deportiva mediante tecnología Seamless de la más alta
+						calidad.
 					</motion.p>
 				</div>
 
-				<div className='grid w-2/3 max-w-3xl grid-cols-2 gap-10 max-sm:flex max-sm:w-full max-sm:flex-col'>
-					<div className='border-r border-white/50 pr-10 max-sm:border-none max-sm:pr-0'>
-						<motion.h3
-							initial={{
-								filter: 'blur(16px)',
-								transform: 'translateY(10px) scale(.85)',
-							}}
-							whileInView={{
-								filter: 'blur(0)',
-								transform: 'translateY(0) scale(1)',
-							}}
-							transition={{
-								duration: 0.5,
-								delay: 0.2,
-								ease: 'linear',
-							}}
-							className='!mb-3'
+				<motion.div
+					initial={{
+						scale: 0.85,
+						filter: 'blur(8px)',
+						translateY: 40,
+						opacity: 0,
+					}}
+					whileInView={{
+						filter: 'blur(0)',
+						translateY: 0,
+						scale: 1,
+						opacity: 1,
+					}}
+					transition={{
+						duration: 0.3,
+						delay: 0.3,
+						ease: 'linear',
+					}}
+				>
+					<motion.div
+						initial={{
+							scale: 1,
+						}}
+						whileHover={{
+							scale: 1.05,
+							originX: 0,
+						}}
+						whileTap={{ scale: 0.975, originX: 0 }}
+					>
+						<Link
+							href='/nosotros'
+							className='flex h-max w-max items-center justify-end gap-2 rounded-full border-[1.5px] border-white py-1 pr-2 pl-3 text-base'
 						>
-							Misión
-						</motion.h3>
-						<motion.p
-							initial={{
-								filter: 'blur(8px)',
-								transform: 'translateY(20px) scale(0.85)',
-							}}
-							whileInView={{
-								filter: 'blur(0)',
-								transform: 'translateY(0) scale(1)',
-							}}
-							transition={{
-								duration: 0.5,
-								delay: 0.2,
-								ease: 'linear',
-							}}
-							className='text-justify'
-						>
-							Ofrecer pendas que cumplan con los más altos estándares del
-							mercado global, mientras marcamos tendencia con soluciones
-							innovadoras en moda.
-						</motion.p>
-					</div>
+							<span className='uppercase'>Más sobre nosotros</span>
 
-					<div>
-						<motion.h3
-							initial={{
-								filter: 'blur(16px)',
-								transform: 'translateY(10px) scale(.85)',
-							}}
-							whileInView={{
-								filter: 'blur(0)',
-								transform: 'translateY(0) scale(1)',
-							}}
-							transition={{
-								duration: 0.5,
-								delay: 0.2,
-								ease: 'linear',
-							}}
-							className='!mb-3'
-						>
-							Visión
-						</motion.h3>
-						<motion.p
-							initial={{
-								filter: 'blur(8px)',
-								transform: 'translateY(20px) scale(0.85)',
-							}}
-							whileInView={{
-								filter: 'blur(0)',
-								transform: 'translateY(0) scale(1)',
-							}}
-							transition={{
-								duration: 0.5,
-								delay: 0.2,
-								ease: 'linear',
-							}}
-							className='text-justify'
-						>
-							Ser una empresa globalmente reconocida por la calidad de nuestros
-							productos, rentabilidad y confiabilidad, liderando con innovación,
-							tecnología avanzada y prácticas responsables que favorecen el
-							desarrollo social y ambiental.
-						</motion.p>
-					</div>
-				</div>
+							<RiArrowRightUpLine
+								size={24}
+								color='white'
+							/>
+						</Link>
+					</motion.div>
+				</motion.div>
 			</div>
 		</section>
 	)
