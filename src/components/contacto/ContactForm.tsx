@@ -91,7 +91,50 @@ export default function ContactForm() {
 
 	return (
 		<section className='z-10 flex flex-col items-center'>
-			<h2 className='!mb-40 max-w-1/2 !text-6xl max-md:!text-5xl max-sm:max-w-full max-sm:px-8 max-sm:!text-5xl'>
+			<div className='z-10 flex w-1/2 -translate-y-[40%] flex-col gap-4 max-md:w-3/4 max-sm:w-full max-sm:px-10'>
+				<motion.div
+					initial={{ opacity: 0, x: -100 }}
+					animate={{ opacity: 1, x: 0 }}
+					className='flex flex-col items-start justify-center gap-1'
+				>
+					<p className='!text-sm !tracking-widest text-secondary'>SEAMLESS</p>
+					<div className='h-[1.5px] w-12 bg-secondary'></div>
+				</motion.div>
+
+				<h2 className='!text-6xl !font-normal text-secondary max-md:!text-5xl max-sm:!text-4xl'>
+					<motion.span
+						initial={{ opacity: 0, filter: 'blur(8px)' }}
+						animate={{ opacity: 0.75, filter: 'blur(0px)' }}
+						transition={{ duration: 0.3, delay: 0.5 }}
+					>
+						Déjanos un mensaje
+					</motion.span>{' '}
+					<motion.span
+						initial={{ opacity: 0, filter: 'blur(8px)' }}
+						animate={{ opacity: 1, filter: 'blur(0px)' }}
+						transition={{ duration: 0.3, delay: 1 }}
+						className='text-primary'
+					>
+						nosotros nos pondremos en contacto
+					</motion.span>{' '}
+					<motion.span
+						initial={{ opacity: 0, filter: 'blur(8px)' }}
+						animate={{ opacity: 0.75, filter: 'blur(0px)' }}
+						transition={{ duration: 0.3, delay: 1.5 }}
+					>
+						con usted.
+					</motion.span>{' '}
+					<motion.span
+						initial={{ opacity: 0, filter: 'blur(8px)' }}
+						animate={{ opacity: 1, filter: 'blur(0px)' }}
+						transition={{ duration: 0.3, delay: 1.5 }}
+					>
+						😉
+					</motion.span>
+				</h2>
+			</div>
+
+			{/* <h2 className='!mb-40 max-w-1/2 !text-6xl max-md:!text-5xl max-sm:max-w-full max-sm:px-8 max-sm:!text-5xl'>
 				<motion.span
 					initial={{ opacity: 0, filter: 'blur(10px)' }}
 					animate={{ opacity: 1, filter: 'blur(0px)' }}
@@ -114,7 +157,7 @@ export default function ContactForm() {
 				>
 					. 😁
 				</motion.span>
-			</h2>
+			</h2> */}
 
 			<Form onSubmit={handleSubmit(onSubmit)}>
 				<InputGroup>
@@ -190,7 +233,7 @@ export default function ContactForm() {
 				</FormButton>
 			</Form>
 
-			<p className='!mt-10 max-sm:px-9'>
+			<p className='!mt-10 w-1/2 max-md:w-3/4 max-sm:w-full max-sm:px-9'>
 				Alternativamente puedes dejarnos un mensaje en{' '}
 				<a
 					href='mailto:ventas@vivezatextil.com'
