@@ -1,9 +1,10 @@
 interface Props {
 	color?: string
 	size?: number
+	className?: string
 }
 
-const TiafLogo: React.FC<Props> = ({ color, size = 40 }) => {
+const TiafLogo: React.FC<Props> = ({ color, size = 40, className }) => {
 	const aspectRatio = 107.04 / 142.67
 	const width = size * aspectRatio
 
@@ -17,6 +18,7 @@ const TiafLogo: React.FC<Props> = ({ color, size = 40 }) => {
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 107.04 142.67'
 			fill={color}
+			className={className}
 		>
 			<title id='tiaf-svg-title'>TIAF</title>
 			<g>

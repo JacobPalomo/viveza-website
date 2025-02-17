@@ -1,9 +1,14 @@
 interface Props {
 	color?: string
 	size?: number
+	className?: string
 }
 
-const CasmiLogo: React.FC<Props> = ({ color = 'white', size = 40 }) => {
+const CasmiLogo: React.FC<Props> = ({
+	color = 'white',
+	size = 40,
+	className,
+}) => {
 	const aspectRatio = 646.06 / 210.35
 	const width = size * aspectRatio
 
@@ -19,6 +24,7 @@ const CasmiLogo: React.FC<Props> = ({ color = 'white', size = 40 }) => {
 			role='img'
 			focusable='false'
 			style={{ fill: color }}
+			className={className}
 		>
 			<title id='casmi-svg-title'>Casmi</title>
 			<g

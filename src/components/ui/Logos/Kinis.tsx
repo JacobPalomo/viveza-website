@@ -1,9 +1,10 @@
 interface Props {
 	color?: string
 	size?: number
+	className?: string
 }
 
-const KinisLogo: React.FC<Props> = ({ color, size = 40 }) => {
+const KinisLogo: React.FC<Props> = ({ color, size = 40, className }) => {
 	const aspectRatio = 580.75 / 215.57
 	const width = size * aspectRatio
 
@@ -16,6 +17,7 @@ const KinisLogo: React.FC<Props> = ({ color, size = 40 }) => {
 			focusable={false}
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 580.75 215.57'
+			className={className}
 		>
 			<title id='kinis-svg-title'>Kinis</title>
 
