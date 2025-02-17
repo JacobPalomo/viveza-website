@@ -16,6 +16,8 @@ export default function Conocenos() {
 				loop
 				muted
 				playsInline
+				preload='auto'
+				poster='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
 				className='absolute top-0 left-0 z-10 h-full w-full bg-background object-cover'
 			>
 				<source
@@ -24,9 +26,17 @@ export default function Conocenos() {
 				/>
 				Tu navegador no es compatible con el video.
 			</video>
+			<div className='absolute top-0 left-0 z-[9] h-full w-full bg-background object-cover'>
+				{/* Fallback imagen si el video no se puede cargar */}
+				<img
+					src='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
+					className='h-full w-full object-cover'
+					alt='Fondo estático'
+				/>
+			</div>
 
 			<div className='absolute top-0 left-0 h-full w-full bg-black opacity-10' />
-			<div className='relative z-10 flex h-full min-h-screen w-full flex-col items-start justify-end gap-10 p-10 text-white'>
+			<div className='relative z-10 flex h-full min-h-screen w-full flex-col items-start justify-end gap-10 px-6 py-10 text-white'>
 				<div className='w-2/3 max-w-3xl max-sm:w-full'>
 					<div className='!mb-5 flex w-full flex-col items-start justify-center gap-2'>
 						<motion.div
