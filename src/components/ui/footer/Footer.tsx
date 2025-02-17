@@ -1,10 +1,10 @@
 import { CallToAction } from './CallToAction'
 import FooterList from './LinkList'
 import Link from 'next/link'
-import KinisLogo from '@/components/ui/Logos/Kinis'
-import TiafLogo from '@/components/ui/Logos/Tiaf'
-import CasmiLogo from '@/components/ui/Logos/Casmi'
-import VivezaLogo from '@/components/ui/Logos/Viveza'
+import KinisLogo from '@/components/ui/logos/Kinis'
+import TiafLogo from '@/components/ui/logos/Tiaf'
+import CasmiLogo from '@/components/ui/logos/Casmi'
+import VivezaLogo from '@/components/ui/logos/Viveza'
 
 export function Footer() {
 	return (
