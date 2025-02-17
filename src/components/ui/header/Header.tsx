@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Logo from '@/components/ui/Logos/VivezaCorto'
+import Logo from '@/components/ui/logos/VivezaCorto'
 import HeaderLink from '@/components/ui/header/Link'
 import HeaderNav from '@/components/ui/header/Nav'
 import {
