@@ -480,6 +480,8 @@ const config: Types.Core.GameConfig = {
 		mode: Scale.FIT,
 		autoCenter: Scale.CENTER_BOTH,
 	},
+	banner: false,
+	pixelArt: true,
 }
 
 export function startGame(containerId: string) {

@@ -7,9 +7,8 @@ import Link from 'next/link'
 
 const Game = dynamic(() => import('@/components/Game'), { ssr: false })
 
+// TODO - Diseñar bien la página del Error 404
 export default function NotFound() {
-	console.log('NotFound component rendered')
-
 	return (
 		<Main className='before-radial-mask-image pt-70 pb-20'>
 			<div className='z-10 !mb-10 flex flex-col items-center justify-center gap-1'>
@@ -25,11 +24,7 @@ export default function NotFound() {
 				</Link>
 			</div>
 
-			<Suspense
-				fallback={
-					<div className='z-10 h-[600px] w-screen animate-pulse bg-red-500' />
-				}
-			>
+			<Suspense>
 				<Game />
 			</Suspense>
 		</Main>
