@@ -8,8 +8,6 @@ import Main from '@/components/ui/Main'
 export { metadata }
 
 export default function Home() {
-	const timestamp = Date.now().toString()
-
 	return (
 		<Main>
 			<div className='relative'>
