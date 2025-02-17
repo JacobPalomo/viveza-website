@@ -226,7 +226,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-2 row-end-3 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_auto/bg-tiaf`}
+					src={`/api/cdn?url=/f_avif,q_90/bg-tiaf`}
 					alt='TIAF'
 					width={3838}
 					height={5176}
@@ -238,7 +238,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-3 row-end-4 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_auto/bg-kinis`}
+					src={`/api/cdn?url=/f_avif,q_90/bg-kinis`}
 					alt='KINIS'
 					width={3858}
 					height={5272}
@@ -250,7 +250,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-4 row-end-5 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_auto/bg-casmi`}
+					src={`/api/cdn?url=/f_avif,q_90/bg-casmi`}
 					alt='CASMI'
 					width={3839}
 					height={5176}
