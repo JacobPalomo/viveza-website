@@ -1,6 +1,6 @@
 export default function HeaderBackdrop() {
 	return (
-		<div className='pointer-events-none fixed top-0 z-30 h-40 w-full'>
+		<div className='pointer-events-none fixed top-0 right-0 left-0 z-30 h-40 w-full'>
 			<div className='pointer-events-none fixed top-0 z-[31] h-40 w-full'>
 				<div
 					className='pointer-events-none absolute inset-0'

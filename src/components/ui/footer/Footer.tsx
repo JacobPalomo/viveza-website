@@ -8,7 +8,10 @@ import VivezaLogo from '@/components/ui/logos/Viveza'
 
 export function Footer() {
 	return (
-		<footer className='flex min-h-[50vh] w-full flex-col items-center justify-center gap-10 bg-sky-950 bg-[url("/api/cdn?url=f_avif,q_auto/bg-footer")] bg-cover pt-40 text-white'>
+		<footer
+			data-header-theme='light'
+			className='flex min-h-[50vh] w-full flex-col items-center justify-center gap-10 bg-sky-950 bg-[url("/api/cdn?url=f_avif,q_auto/bg-footer")] bg-cover pt-40 text-white'
+		>
 			<CallToAction />
 
 			<hr className='h-[1px] w-3/4 bg-white opacity-25' />

@@ -13,12 +13,13 @@ const HeroText = dynamic(() => import('@/components/home/hero/HeroText'), {
 
 const Hero = () => {
 	return (
-		<div className='sticky top-0'>
-			<section className='relative flex min-h-screen w-full items-center justify-center bg-background max-md:flex-col-reverse'>
-				<HeroBackground />
-				<HeroText />
-			</section>
-		</div>
+		<section
+			data-header-theme='light'
+			className='relative flex min-h-screen w-full items-center justify-center bg-background max-md:flex-col-reverse'
+		>
+			<HeroBackground />
+			<HeroText />
+		</section>
 	)
 }
 

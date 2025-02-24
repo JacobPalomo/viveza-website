@@ -189,6 +189,7 @@ function MarcasDesktop() {
 	return (
 		<section
 			id='marcas'
+			data-header-theme='dark'
 			ref={sectionRef}
 			// Esta versión se muestra solo en pantallas md en adelante
 			className='relative hidden min-h-screen w-full grid-cols-2 grid-rows-4 md:grid'

@@ -7,6 +7,12 @@
 	--color-tiaf: #bf9f6b;
 	--color-kinis: #db7d8b;
 	--color-casmi: #e02881;
+	--text-hero: clamp(2.25rem, 1.814rem + 2.182vw, 3.75rem) /* h2 */;
+	--text-title: clamp(3rem, 2.803rem + 0.987vw, 3.75rem) /* h3 */;
+	--text-subtitle: clamp(2.75rem, 2.684rem + 0.329vw, 3rem) /* h4 */;
+	--text-body: clamp(1.125rem, 1.092rem + 0.164vw, 1.25rem) /* p */;
+	--text-title-tag: clamp(0.875rem, 0.842rem + 0.164vw, 1rem);
+	--text-header-link: clamp(0.875rem, 0.842rem + 0.164vw, 1rem) /* a */;
 }
 
 *,
@@ -25,9 +31,8 @@
 
 body {
 	font-family: var(--general-sans-font);
-	font-size: 1.25rem;
+	font-size: var(--text-body);
 	-webkit-font-smoothing: antialiased;
-	background-color: white;
 	color: var(--color-secondary);
 }
 

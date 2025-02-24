@@ -1,170 +1,254 @@
 'use client'
 
-import Link from 'next/link'
-import Logo from '@/components/ui/logos/VivezaCorto'
-import HeaderLink from '@/components/ui/header/Link'
-import HeaderNav from '@/components/ui/header/Nav'
-import {
-	IconBrandLine,
-	IconBrandMedium,
-	IconHome,
-	IconMenu4,
-	IconNotebook,
-	IconTelescope,
-	IconX,
-} from '@tabler/icons-react'
-import { RiArrowRightUpLine } from 'react-icons/ri'
 import HeaderBackdrop from './Backdrop'
-import { useState } from 'react'
-import { motion, Variants } from 'motion/react'
+import {
+	Dispatch,
+	RefObject,
+	SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
+import { useScrollDirection } from '@/utils/scroll-direction'
+import DesktopHeader from './DesktopHeader'
+import MobileHeader from './MobileHeader'
+
+export type MenuItem = { label: string; href: string }
+type ScrollDirection = 'up' | 'down'
+type HeaderTheme = 'light' | 'dark'
+
+// Lista de enlaces del menú
+const menuItems = [
+	{ label: 'Inicio', href: '/' },
+	{ label: 'Nosotros', href: '/nosotros' },
+	{ label: 'Tecnología', href: '#' },
+	{ label: 'Marcas', href: '#' },
+	{ label: 'Blog', href: '#' },
+]
+
+/**
+ * Calcula el nuevo valor de clip-path basado en diversos factores (theme, dirección de scroll, etc.)
+ */
+function getNewClipValue(
+	theme: HeaderTheme,
+	scrollDirection: ScrollDirection,
+	bestRatio: number,
+	prevClipValue: string,
+	setCurrentHeaderTheme: Dispatch<SetStateAction<'dark' | 'light'>>,
+): string {
+	// Función auxiliar para generar el string con base en un porcentaje
+	const insetVertical = (value: number) => `inset(${value}% 0px 0px 0px)`
+	const insetVerticalInverse = (value: number) => `inset(0px 0px ${value}% 0px)`
+
+	if (theme === 'light') {
+		// Sección con data-header-theme="light"
+		setCurrentHeaderTheme('light')
+		if (scrollDirection === 'down') {
+			// Bajando
+			if (prevClipValue === 'inset(0% 0px 0px 0px)') {
+				return insetVerticalInverse((1 - bestRatio) * 100)
+			} else {
+				// En casi todos los demás casos
+				return insetVertical((1 - bestRatio) * 100)
+			}
+		} else {
+			// Subiendo
+			if (
+				prevClipValue === 'inset(0% 0px 0px 0px)' ||
+				prevClipValue === 'inset(0px 0px 0% 0px)'
+			) {
+				return insetVertical((1 - bestRatio) * 100)
+			} else {
+				return insetVerticalInverse((1 - bestRatio) * 100)
+			}
+		}
+	} else {
+		// theme === "dark"
+		setCurrentHeaderTheme('dark')
+		if (scrollDirection === 'down') {
+			// Bajando
+			if (
+				prevClipValue === 'inset(0% 0px 0px 0px)' ||
+				prevClipValue === 'inset(0px 0px 0% 0px)'
+			) {
+				return insetVerticalInverse(bestRatio * 100)
+			} else {
+				return insetVertical(bestRatio * 100)
+			}
+		} else {
+			// Subiendo
+			if (
+				prevClipValue === 'inset(0% 0px 0px 0px)' ||
+				prevClipValue === 'inset(0px 0px 0% 0px)'
+			) {
+				return insetVertical(bestRatio * 100)
+			} else {
+				return insetVerticalInverse(bestRatio * 100)
+			}
+		}
+	}
+}
+
+/**
+ * Callback principal para el IntersectionObserver.
+ * Determina cuál sección se está viendo más para decidir si la cabecera es "light" o "dark" y calcular el clipPath.
+ */
+function handleIntersection(
+	entries: IntersectionObserverEntry[],
+	headerRef: RefObject<HTMLElement>,
+	clipValue: string,
+	setClipValue: Dispatch<SetStateAction<string>>,
+	prevClipValue: string,
+	setPrevClipValue: Dispatch<SetStateAction<string>>,
+	scrollDirection: ScrollDirection,
+	setCurrentHeaderTheme: Dispatch<SetStateAction<'dark' | 'light'>>,
+) {
+	if (!headerRef.current) return
+
+	// Guardamos el clipValue anterior si estamos en uno de los valores extremos
+	if (
+		clipValue === 'inset(100% 0px 0px 0px)' ||
+		clipValue === 'inset(0% 0px 0px 0px)' ||
+		clipValue === 'inset(0px 0px 100% 0px)' ||
+		clipValue === 'inset(0px 0px 0% 0px)'
+	) {
+		setPrevClipValue(clipValue)
+	}
+
+	const headerRect = headerRef.current.getBoundingClientRect()
+	let bestEntry: IntersectionObserverEntry | null = null
+	let bestRatio = 0
+
+	entries.forEach(entry => {
+		if (!entry.isIntersecting) return
+
+		const sectionRect = entry.boundingClientRect
+		// Calculamos la parte efectiva de intersección con el header
+		const intersectionHeight =
+			Math.min(headerRect.bottom, sectionRect.bottom) -
+			Math.max(headerRect.top, sectionRect.top)
+		const ratio = Math.max(
+			0,
+			Math.min(1, intersectionHeight / headerRect.height),
+		)
+
+		if (ratio > bestRatio) {
+			bestRatio = ratio
+			bestEntry = entry
+		}
+	})
+
+	if (bestEntry) {
+		const sectionEl = (bestEntry as Event).target as HTMLElement
+		const themeAttr = sectionEl.getAttribute('data-header-theme') as HeaderTheme
+
+		if (themeAttr) {
+			const newClip = getNewClipValue(
+				themeAttr,
+				scrollDirection,
+				bestRatio,
+				prevClipValue,
+				setCurrentHeaderTheme,
+			)
+			setClipValue(newClip)
+		}
+	}
+}
+
+const getActiveHeaderRef = (
+	desktopHeaderRef: RefObject<HTMLElement | null>,
+	mobileHeaderRef: RefObject<HTMLElement | null>,
+) => {
+	if (
+		desktopHeaderRef?.current &&
+		window.getComputedStyle(desktopHeaderRef.current).display !== 'none'
+	) {
+		return desktopHeaderRef
+	}
+	if (
+		mobileHeaderRef?.current &&
+		window.getComputedStyle(mobileHeaderRef.current).display !== 'none'
+	) {
+		return mobileHeaderRef
+	}
+	return null
+}
 
 export default function Header() {
-	const [isOpen, setIsOpen] = useState(false)
+	const scrollDirection = useScrollDirection() // "up" | "down"
+	const desktopHeaderRef = useRef<HTMLElement>(null)
+	const mobileHeaderRef = useRef<HTMLElement>(null)
 
-	const sidebarVariants: Variants = {
-		open: {
-			clipPath: `circle(2000px at 110% 0px)`,
-			transition: {
-				type: 'spring',
-				stiffness: 30,
-				restDelta: 2,
-			},
-		},
-		closed: {
-			clipPath: 'circle(20px at 110% 0px)',
-			transition: {
-				delay: 0.2,
-				type: 'spring',
-				stiffness: 400,
-				damping: 40,
-			},
-		},
-	}
+	// Estado inicial y estado anterior de clipPath
+	const [clipValue, setClipValue] = useState<string>('inset(100% 0px 0px 0px)')
+	const [prevClipValue, setPrevClipValue] = useState<string>(clipValue)
+	const [currentHeaderTheme, setCurrentHeaderTheme] = useState<
+		'light' | 'dark'
+	>('light')
+	const [headerIsHovered, setHeaderIsHovered] = useState<boolean>(false)
+	const [isOpen, setIsOpen] = useState<boolean>(false)
+
+	useEffect(() => {
+		const activeHeaderRef = getActiveHeaderRef(
+			desktopHeaderRef,
+			mobileHeaderRef,
+		)
+		if (!activeHeaderRef || !activeHeaderRef.current) return
+
+		const headerEl = activeHeaderRef.current
+		if (!headerEl) return
+
+		const sections = document.querySelectorAll('*[data-header-theme]')
+		// Definimos el threshold con 101 valores, 0.0 -> 1.0
+		const thresholds = Array.from({ length: 101 }, (_, i) => i / 100)
+
+		const observerOptions = {
+			root: null,
+			threshold: thresholds,
+		}
+
+		const observer = new IntersectionObserver(entries => {
+			handleIntersection(
+				entries,
+				activeHeaderRef as RefObject<HTMLElement>,
+				clipValue,
+				setClipValue,
+				prevClipValue,
+				setPrevClipValue,
+				scrollDirection,
+				setCurrentHeaderTheme,
+			)
+		}, observerOptions)
+
+		sections.forEach(section => observer.observe(section))
+		return () => {
+			observer.disconnect()
+		}
+	}, [clipValue, scrollDirection, prevClipValue])
 
 	return (
 		<>
-			{/* Desktop header */}
-			<header className='absolute top-0 max-md:hidden'>
-				<div className='flex items-center justify-between p-6 lg:px-8'>
-					<Link
-						href='/'
-						aria-label='Viveza Textil'
-						className='fixed top-8 right-0 left-0 z-[51] !ml-12 w-max cursor-pointer'
-					>
-						<h1 className='w-max'>
-							<Logo
-								className='logo block h-10 w-auto fill-current'
-								color='#ffffff'
-							/>
-						</h1>
-					</Link>
-					<div className='fixed top-8 right-0 left-0 z-50 grid min-h-12 w-full grid-cols-[1fr_2fr_1fr] px-12 text-white'>
-						<HeaderNav>
-							<HeaderLink href='/'>Inicio</HeaderLink>
-							<HeaderLink href='/#conocenos'>Conócenos</HeaderLink>
-							<HeaderLink href='/#marcas'>Marcas</HeaderLink>
-							<HeaderLink href='https://blog.vivezasport.com'>Blog</HeaderLink>
-						</HeaderNav>
+			<DesktopHeader
+				headerRef={desktopHeaderRef}
+				isHovered={headerIsHovered}
+				onHover={() => setHeaderIsHovered(true)}
+				onBlur={() => setHeaderIsHovered(false)}
+				theme={currentHeaderTheme}
+				items={menuItems}
+				clipValue={clipValue}
+			/>
 
-						<Link
-							href='/contacto'
-							className='col-start-3 col-end-4 flex h-max w-max items-center justify-end gap-2 self-center justify-self-end rounded-full border-[1.5px] border-white py-1 pr-2 pl-3 text-base transition-all transition-discrete duration-200 hover:scale-105 active:scale-100'
-						>
-							<span className='uppercase'>Contacto</span>
-
-							<RiArrowRightUpLine
-								size={24}
-								color='white'
-							/>
-						</Link>
-					</div>
-				</div>
-			</header>
-			{/* End Desktop Header */}
-
-			{/* Tablet & Mobile Header */}
-			<header className='absolute top-0 min-md:hidden'>
-				<div className='flex items-center justify-between p-4'>
-					<h1>
-						<Link
-							href='/'
-							aria-label='Viveza Textil'
-							className='fixed top-8 right-0 left-0 z-[51] !ml-8 w-max cursor-pointer'
-						>
-							<Logo
-								className='logo block h-10 w-auto fill-current'
-								color='#ffffff'
-							/>
-						</Link>
-					</h1>
-
-					<div className='fixed top-8 right-0 left-0 z-50 grid w-full grid-cols-2 px-6 text-white'>
-						<button
-							className='col-start-2 col-end-3 self-center justify-self-end p-2'
-							onClick={() => setIsOpen(!isOpen)}
-						>
-							{!isOpen ? <IconMenu4 size={35} /> : <IconX size={35} />}
-						</button>
-					</div>
-				</div>
-
-				<motion.nav
-					initial={false}
-					animate={isOpen ? 'open' : 'closed'}
-					variants={sidebarVariants}
-					className='fixed top-0 right-0 bottom-0 z-40 h-max w-full border-b-2 border-white/75 bg-gradient-to-b from-primary from-5% to-transparent p-8 pt-30 backdrop-blur-md'
-				>
-					<ul className='!space-y-8 text-lg text-cyan-950'>
-						<li>
-							<Link
-								href='/'
-								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 text-white hover:underline'
-							>
-								<IconHome /> Inicio
-							</Link>
-						</li>
-						<li>
-							<Link
-								href='/#conocenos'
-								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 text-white hover:underline'
-							>
-								<IconTelescope /> Conócenos
-							</Link>
-						</li>
-						<li>
-							<Link
-								href='/#marcas'
-								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 text-white hover:underline'
-							>
-								<IconBrandMedium /> Marcas
-							</Link>
-						</li>
-						<li>
-							<Link
-								href='https://blog.vivezasport.com'
-								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 text-white hover:underline'
-							>
-								<IconNotebook /> Blog
-							</Link>
-						</li>
-						<li>
-							<Link
-								href='/contacto'
-								onClick={() => setIsOpen(false)}
-								className='flex w-full items-center gap-2 text-white hover:underline'
-							>
-								<IconBrandLine />
-								Contacto
-							</Link>
-						</li>
-					</ul>
-				</motion.nav>
-			</header>
-			{/* End Tablet & Mobile Header */}
+			<MobileHeader
+				headerRef={mobileHeaderRef}
+				isHovered={headerIsHovered}
+				onHover={() => setHeaderIsHovered(true)}
+				onBlur={() => setHeaderIsHovered(false)}
+				theme={currentHeaderTheme}
+				items={menuItems}
+				clipValue={clipValue}
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+			/>
 
 			<HeaderBackdrop />
 		</>
