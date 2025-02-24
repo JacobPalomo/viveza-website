@@ -17,7 +17,7 @@ export default function Home() {
 				className='relative'
 				data-header-theme='black'
 			>
-				<Fact />
+				{/* <Fact /> */}
 				<Features />
 			</div>
 
