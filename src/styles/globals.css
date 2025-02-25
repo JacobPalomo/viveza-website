@@ -13,6 +13,10 @@
 	--text-body: clamp(1.125rem, 1.092rem + 0.164vw, 1.25rem) /* p */;
 	--text-title-tag: clamp(0.875rem, 0.842rem + 0.164vw, 1rem);
 	--text-header-link: clamp(0.875rem, 0.842rem + 0.164vw, 1rem) /* a */;
+
+	--breakpoint-sm: 26.625rem;
+	--breakpoint-xs: 23.5rem;
+	--breakpoint-2xs: 20.0625rem;
 }
 
 *,
@@ -24,8 +28,6 @@
 * {
 	line-height: calc(1em + 0.5rem);
 	margin: 0;
-	scrollbar-width: thin;
-	scrollbar-color: var(--color-primary) var(--color-background);
 	scroll-behavior: smooth;
 }
 
@@ -66,7 +68,7 @@ h6 {
 
 p {
 	font-size: 1.25rem;
-	hyphens: auto;
+	/* hyphens: auto; */
 	text-wrap: pretty;
 	font-weight: 300 !important;
 	letter-spacing: 0.02rem;
@@ -129,25 +131,25 @@ strong {
 }
 
 /* Estilo general de la barra de scroll */
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
 	width: 6px; /* Ancho de la barra */
 }
 
 /* Estilo del track (fondo de la barra de scroll) */
-::-webkit-scrollbar-track {
-	background: var(--color-background); /* Color de fondo */
-	border-radius: 6px;
+*::-webkit-scrollbar-track {
+	background: var(--color-primary); /* Color de fondo */
 }
 
 /* Estilo del thumb (barra deslizante) */
-::-webkit-scrollbar-thumb {
-	background: rgba(0, 170, 226, 0.85); /* Color de la barra */
+*::-webkit-scrollbar-thumb {
+	background: hsl(216 33% 97% / 0.75); /* Color de la barra */
 	border-radius: 6px;
 }
 
 /* Cambia el color cuando se pasa el mouse sobre la barra */
-::-webkit-scrollbar-thumb:hover {
-	background: var(--color-primary);
+*::-webkit-scrollbar-thumb:hover {
+	background: var(--color-background);
+	margin: 10px;
 }
 
 #game-container {
@@ -156,4 +158,17 @@ strong {
 
 #game-container canvas {
 	margin: auto;
+}
+
+.scroll-text-reveal span {
+	color: hsl(0 0% 23% / 0.2);
+	background-clip: text;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(
+		90deg,
+		var(--color-secondary),
+		var(--color-secondary)
+	);
 }
