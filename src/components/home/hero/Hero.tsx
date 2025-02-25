@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { memo } from 'react'
+import { memo, useRef } from 'react'
 
 const HeroBackground = dynamic(
 	() => import('@/components/home/hero/HeroBackground'),
@@ -12,12 +12,15 @@ const HeroText = dynamic(() => import('@/components/home/hero/HeroText'), {
 })
 
 const Hero = () => {
+	const containerRef = useRef<HTMLElement>(null)
+
 	return (
 		<section
+			ref={containerRef}
 			data-header-theme='light'
-			className='relative flex min-h-screen w-full items-center justify-center bg-background max-md:flex-col-reverse'
+			className='relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background max-md:flex-col-reverse'
 		>
-			<HeroBackground />
+			<HeroBackground containerRef={containerRef} />
 			<HeroText />
 		</section>
 	)
