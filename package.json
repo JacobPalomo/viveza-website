@@ -6,7 +6,8 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"upgrade-branch": "git fetch origin && git merge origin/main"
 	},
 	"dependencies": {
 		"@hcaptcha/react-hcaptcha": "^1.11.2",
