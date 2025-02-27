@@ -1,9 +1,5 @@
 'use client'
 
-import { motion } from 'motion/react'
-import TitleTag from '../ui/TitleTag'
-import Link from 'next/link'
-import { RiArrowRightUpLine } from 'react-icons/ri'
 import Image from 'next/image'
 
 export default function Video() {

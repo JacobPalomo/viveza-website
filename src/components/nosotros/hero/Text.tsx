@@ -2,12 +2,6 @@
 
 import { memo } from 'react'
 import { motion } from 'motion/react'
-import dynamic from 'next/dynamic'
-
-const CustomerLogos = dynamic(
-	() => import('@/components/home/hero/CustomerLogos'),
-	{ ssr: false },
-)
 
 const HeroText = () => (
 	<div className='absolute top-[50%] left-[10%] z-10 flex w-3/7 -translate-y-[40%] flex-col gap-4 max-md:right-[inherit] max-md:left-[5%] max-md:w-1/2 max-sm:top-[inherit] max-sm:right-auto max-sm:-bottom-[2.5%] max-sm:left-auto max-sm:w-full max-sm:px-8'>
