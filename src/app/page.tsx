@@ -5,6 +5,7 @@ import Features from '@/components/home/features/Features'
 import Nosotros from '@/components/home/Nosotros'
 import Marcas from '@/components/home/Marcas'
 import Fact from '@/components/home/Fact'
+import Conecta from '@/components/home/Conecta'
 
 export { metadata }
 
@@ -14,15 +15,22 @@ export default function Home() {
 			<Hero />
 
 			<div
-				className='relative'
-				data-header-theme='black'
+				className='relative h-full w-full'
+				data-header-theme='dark'
 			>
 				<Fact />
 				<Features />
 			</div>
 
 			<Nosotros />
-			<Marcas />
+
+			<div
+				className='relative h-full w-full'
+				data-header-theme='dark'
+			>
+				<Marcas />
+				<Conecta />
+			</div>
 		</Main>
 	)
 }
