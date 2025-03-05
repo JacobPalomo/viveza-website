@@ -7,11 +7,11 @@ export default function Philosophy() {
 				label={'Misión'}
 				title={'Compromiso esencial'}
 				description={'Hilo con hilo tejemos historias en cada prenda.'}
-				titlePosition='center'
-				image='/api/cdn?url=v1740500560/mision.avif'
-				width={4823}
-				height={7227}
-				alt={'backgroundMision'}
+				alignment='center'
+				imageSrc='/api/cdn?url=v1740500560/mision.avif'
+				imageWidth={4823}
+				imageHeight={7227}
+				imageAlt={'backgroundMision'}
 			/>
 			<Card
 				label={'Visión'}
@@ -19,11 +19,11 @@ export default function Philosophy() {
 				description={
 					'Trascender en el meraco mexicano, evolucionando de la maono de nuetras prendas, redefiniendo el confort y contagiando movimiento.'
 				}
-				titlePosition='center'
-				image='/api/cdn?url=v1740500585/vision.avif'
-				width={3599}
-				height={5393}
-				alt={'backgrounVision'}
+				alignment='center'
+				imageSrc='/api/cdn?url=v1740500585/vision.avif'
+				imageWidth={3599}
+				imageHeight={5393}
+				imageAlt={'backgrounVision'}
 			/>
 		</section>
 	)
