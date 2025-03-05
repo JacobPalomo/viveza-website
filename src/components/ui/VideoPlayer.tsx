@@ -85,16 +85,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 		}, 0)
 	}
 
-	// Función para reiniciar la secuencia de seek
-	const resetSeekTimeout = () => {
-		if (seekTimeoutRef.current) clearTimeout(seekTimeoutRef.current)
-		seekTimeoutRef.current = setTimeout(() => {
-			setInitialSeekTime(null)
-			setSeekOffset(0)
-			setOverlay(null)
-		}, 800)
-	}
-
 	// Eventos para que los controles no se oculten cuando el mouse esté encima
 	const handleControlsMouseEnter = () => {
 		if (hideControlsTimer.current) clearTimeout(hideControlsTimer.current)
