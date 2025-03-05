@@ -1,116 +1,78 @@
-'use client'
-
+import { FC, memo } from 'react'
+import Image from 'next/image'
 import clsx from 'clsx'
-import Image, { StaticImageData } from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import Title from './Title'
 
 interface CardProps {
-	title: string
-	image: string | StaticImageData
-	description: string
-	alt: string
 	label: string
-	titlePosition?: 'left' | 'center'
-	width: number
-	height: number
+	title: string
+	description: string
+	imageSrc: string
+	imageAlt: string
+	imageWidth: number
+	imageHeight: number
+	theme?: 'light' | 'dark'
+	alignment?: 'left' | 'center' | 'right'
 }
 
-export default function Card({
-	title,
-	image,
-	width,
-	height,
-	description,
-	alt,
+const Card: FC<CardProps> = ({
 	label,
-	titlePosition = 'left',
-}: CardProps) {
-	const [pHeight, setPHeight] = useState<number>(0)
-	const paragraphRef = useRef<HTMLDivElement>(null)
-
-	function handleEnter() {
-		const pElement = paragraphRef?.current
-		if (!pElement) return
-
-		pElement.style.opacity = '1'
-
-		const parentPElement = pElement.parentElement
-		if (!parentPElement) return
-
-		parentPElement.style.transform = 'translateY(0)'
-	}
-
-	function handleLeave() {
-		const pElement = paragraphRef?.current
-		if (!pElement) return
-
-		pElement.style.opacity = '0'
-
-		const parentPElement = pElement.parentElement
-		if (!parentPElement) return
-
-		parentPElement.style.transform = `translateY(${pHeight + 28}px)`
-	}
-
-	useEffect(() => {
-		const pElement = paragraphRef?.current
-		if (!pElement) return
-
-		const { height } = pElement.getBoundingClientRect()
-		addEventListener('resize', () => {
-			setPHeight(height)
-		})
-		setPHeight(height)
-	}, [])
-
+	title,
+	description,
+	imageAlt,
+	imageHeight,
+	imageSrc,
+	imageWidth,
+	theme = 'light',
+	alignment = 'left',
+}) => {
 	return (
-		<div
-			className='relative h-full max-h-screen w-full overflow-hidden text-white'
-			onMouseEnter={handleEnter}
-			onMouseLeave={handleLeave}
-		>
-			<Image
-				src={image}
-				alt={alt}
-				width={width}
-				height={height}
-				loading='lazy'
-				aria-hidden
-				className='h-full w-full object-cover'
-			/>
-
-			<div
-				className='absolute bottom-9 left-1/2 w-full max-w-xl -translate-x-1/2 transition-transform duration-500 ease-out'
-				style={{ transform: `translateY(${pHeight + 28}px)` }}
-			>
+		<div className='relative h-full w-full'>
+			<div className='relative h-full w-full'>
 				<div
+					className='absolute right-0 bottom-0 left-0 z-10 h-full w-full'
+					style={{
+						backgroundImage:
+							'linear-gradient(to top, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%)',
+					}}
+				/>
+				<Image
+					src={imageSrc}
+					alt={imageAlt}
+					width={imageWidth}
+					height={imageHeight}
+					loading='lazy'
+					quality={100}
+					aria-hidden
+					className='card-image-height h-full w-full object-cover brightness-110'
+				/>
+			</div>
+
+			<div className='absolute right-0 bottom-0 left-0 z-20 flex h-auto w-full flex-col items-center justify-center gap-6 p-8 max-sm:p-4'>
+				<Title
+					label={label}
+					title={title}
+					alignment={alignment}
+					theme={theme}
+				/>
+
+				{/* Descripción */}
+				<p
 					className={clsx([
-						'!mb-2 flex w-full flex-col justify-center gap-0.5',
-						{ 'items-center text-center': titlePosition === 'center' },
-						{ 'items-start': titlePosition === 'left' },
+						'h-auto w-full',
+						{ 'text-white': theme === 'light' },
+						{ 'text-secondary': theme === 'dark' },
+						{ 'text-left': alignment === 'left' },
+						{ 'text-center': alignment === 'center' },
+						{ 'text-right': alignment === 'right' },
 					])}
 				>
-					<p className='w-full !text-sm uppercase'>{label}</p>
-					<div className='h-[1.5px] w-12 bg-white' />
-				</div>
-
-				<div
-					ref={paragraphRef}
-					className='opacity-0 transition-all duration-600'
-				>
-					<h3
-						className={clsx([
-							'!mb-4',
-							{ 'text-center': titlePosition === 'center' },
-						])}
-					>
-						{title}
-					</h3>
-					<p className={clsx([{ 'text-center': titlePosition === 'center' }])}>
-						{description}
-					</p>
-				</div>
+					{description}
+				</p>
+				{/* Fin  de la descripción */}
 			</div>
 		</div>
 	)
 }
+
+export default memo(Card)
