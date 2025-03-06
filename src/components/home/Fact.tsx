@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { cubicBezier } from 'motion/react'
 import Image from 'next/image'
-import cintaMetrica from '@/../public/cinta-metrica.png'
 
 export default function Dato() {
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -51,8 +50,8 @@ export default function Dato() {
 
 			<div className='sticky top-80 left-0 max-md:top-[65vw] max-sm:top-[100vw] max-xs:top-[125vw]'>
 				<Image
-					src={cintaMetrica}
-					alt='Boxer'
+					src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/ornament-cinta-metrica.avif'
+					alt='Cinta métrica'
 					width={1333}
 					height={2000}
 					loading='lazy'
