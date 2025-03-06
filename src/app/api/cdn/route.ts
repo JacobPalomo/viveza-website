@@ -38,6 +38,8 @@ export async function GET(req: NextRequest) {
 				'Content-Type': response.headers.get('Content-Type') || 'image/webp',
 				'Cache-Control': 'public, max-age=31536000, immutable',
 				'Access-Control-Allow-Origin': '*', // Permite uso en cualquier dominio
+				'Access-Control-Allow-Methods': 'GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Content-Type',
 				'Set-Cookie': '', // Elimina cookies
 			},
 		})
