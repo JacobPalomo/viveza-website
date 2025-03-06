@@ -50,10 +50,10 @@ export default function Dato() {
 
 			<div className='sticky top-80 left-0 max-md:top-[65vw] max-sm:top-[100vw] max-xs:top-[125vw]'>
 				<Image
-					src='/api/cdn?url=v1740501313/fact-boxer.avif'
-					alt='Boxer'
-					width={6000}
-					height={4000}
+					src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/ornament-cinta-metrica.avif'
+					alt='Cinta métrica'
+					width={1333}
+					height={2000}
 					loading='lazy'
 					aria-hidden
 					className='h-auto w-full object-cover max-md:h-[110vw] max-sm:w-auto'
