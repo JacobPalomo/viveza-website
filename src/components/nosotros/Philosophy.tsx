@@ -8,7 +8,7 @@ export default function Philosophy() {
 				title={'Compromiso esencial'}
 				description={'Hilo con hilo tejemos historias en cada prenda.'}
 				alignment='center'
-				imageSrc='/api/cdn?url=v1740500560/mision.avif'
+				imageSrc='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/card-mision.avif'
 				imageWidth={4823}
 				imageHeight={7227}
 				imageAlt={'backgroundMision'}
@@ -20,7 +20,7 @@ export default function Philosophy() {
 					'Trascender en el meraco mexicano, evolucionando de la maono de nuetras prendas, redefiniendo el confort y contagiando movimiento.'
 				}
 				alignment='center'
-				imageSrc='/api/cdn?url=v1740500585/vision.avif'
+				imageSrc='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/card-vision.avif'
 				imageWidth={3599}
 				imageHeight={5393}
 				imageAlt={'backgrounVision'}

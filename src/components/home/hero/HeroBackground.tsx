@@ -20,12 +20,10 @@ const HeroBackground = ({ containerRef }: Props) => {
 
 	return (
 		<MotionImage
-			src={`/api/cdn?url=/f_avif,q_90/hero`}
+			src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/hero.avif`}
 			alt='background image'
 			fill
 			sizes='100vw'
-			placeholder='blur'
-			blurDataURL={`/api/cdn?url=/f_webp,q_1/hero`}
 			quality={100}
 			priority
 			style={{ scale: scaleValue }}

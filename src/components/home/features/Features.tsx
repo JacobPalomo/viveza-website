@@ -7,7 +7,7 @@ export default function Features() {
 			<div className='grid h-full w-full grid-cols-3 gap-3 max-lg:grid-cols-1'>
 				<Card
 					label='CALIDAD'
-					imageSrc='/api/cdn?url=f_avif,q_auto/calidad'
+					imageSrc='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-quality.avif'
 					imageAlt='Imagen que ejemplifica la calidad y textura de nuestra ropa'
 					imageWidth={720}
 					imageHeight={900}
@@ -17,7 +17,7 @@ export default function Features() {
 
 				<Card
 					label='DISEÑO'
-					imageSrc='/api/cdn?url=/f_avif,q_auto/diseno-sin-costuras'
+					imageSrc='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-design.avif'
 					imageAlt='Imagen que muestra el diseño de nuestra ropa'
 					imageWidth={860}
 					imageHeight={1147}
@@ -27,7 +27,7 @@ export default function Features() {
 
 				<Card
 					label='EQUIPO'
-					imageSrc='/api/cdn?url=f_avif,q_auto/equipo'
+					imageSrc='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-team.avif'
 					imageAlt='Imagen que muestra nuestro equipo de trabajo'
 					imageWidth={860}
 					imageHeight={574}

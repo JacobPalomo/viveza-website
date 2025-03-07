@@ -226,7 +226,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-2 row-end-3 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_90/bg-tiaf`}
+					src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-tiaf.avif`}
 					alt='TIAF'
 					width={3838}
 					height={5176}
@@ -238,7 +238,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-3 row-end-4 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_90/bg-kinis`}
+					src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-kinis.avif`}
 					alt='KINIS'
 					width={3858}
 					height={5272}
@@ -250,7 +250,7 @@ function MarcasDesktop() {
 				className='col-start-2 col-end-3 row-start-4 row-end-5 h-screen w-full'
 			>
 				<ParallaxImage
-					src={`/api/cdn?url=/f_avif,q_90/bg-casmi`}
+					src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-casmi.avif`}
 					alt='CASMI'
 					width={3839}
 					height={5176}
@@ -434,7 +434,7 @@ function MarcasMobile() {
 						{/* Cada slide ocupa el ancho completo del viewport */}
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_90/bg-tiaf`}
+								src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-tiaf.avif`}
 								alt='TIAF'
 								width={3838}
 								height={5176}
@@ -443,7 +443,7 @@ function MarcasMobile() {
 						</div>
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_90/bg-kinis`}
+								src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-kinis.avif`}
 								alt='KINIS'
 								width={3858}
 								height={5272}
@@ -452,7 +452,7 @@ function MarcasMobile() {
 						</div>
 						<div className='h-full min-w-screen'>
 							<ParallaxImage
-								src={`/api/cdn?url=/f_avif,q_90/bg-casmi`}
+								src={`https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/card-casmi.avif`}
 								alt='CASMI'
 								width={3839}
 								height={5176}
