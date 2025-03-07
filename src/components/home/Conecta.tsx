@@ -24,7 +24,7 @@ const Conecta: FC = () => {
 							'linear-gradient(to bottom, oklch(0.98 0 0 / 0) 0%, oklch(0.98 0 0 / 1) 1%);',
 					}}
 				>
-					<source src='/api/cdn?type=video&url=/f_auto:video,q_auto/desktop-social-video' />
+					<source src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/social-desktop.mp4' />
 					El video no es compatible con tu navegador
 				</video>
 			</div>
@@ -35,7 +35,7 @@ const Conecta: FC = () => {
 					loop
 					muted
 				>
-					<source src='/api/cdn?type=video&url=/f_auto:video,q_auto/ipad-social-video' />
+					<source src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/social-tablet.mp4' />
 					El video no es compatible con tu navegador
 				</video>
 			</div>
@@ -46,7 +46,7 @@ const Conecta: FC = () => {
 					loop
 					muted
 				>
-					<source src='/api/cdn?type=video&url=/f_auto:video,q_auto/iphone-social-video' />
+					<source src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/social-mobile.mp4' />
 					El video no es compatible con tu navegador
 				</video>
 			</div>

@@ -1,6 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
+import Image from 'next/image'
 import React, { useState, useRef, useEffect, useCallback, memo } from 'react'
 import {
 	RiFullscreenFill,
@@ -566,9 +567,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 										className='absolute bottom-10 w-32'
 										style={{ left: calcPreviewLeft() }}
 									>
-										<img
+										<Image
 											src={previewSrc}
 											alt='Vista previa'
+											width={128}
+											height={71.96}
 											className='w-full rounded border'
 										/>
 									</div>

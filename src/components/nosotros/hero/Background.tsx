@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { memo } from 'react'
 
+// TODO - crear componente Hero para reutilizar en otras páginas
 const HeroBackground = () => (
 	<Image
-		src='/api/cdn?url=v1740667452/hero-bg-conocenos.avif'
+		src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/hero.avif'
 		height={5745}
 		width={8971}
 		alt='background image'

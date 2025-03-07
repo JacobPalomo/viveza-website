@@ -5,15 +5,30 @@ import { motion, Variants } from 'motion/react'
 import Image from 'next/image'
 
 const logos = [
-	{ src: '/api/cdn?url=f_avif,q_100/cliente-coppel', alt: 'Coppel' },
-	{ src: '/api/cdn?url=f_avif,q_100/cliente-liverpool', alt: 'Liverpool' },
-	{ src: '/api/cdn?url=f_avif,q_100/cliente-milano', alt: 'Milano' },
 	{
-		src: '/api/cdn?url=f_avif,q_100/cliente-punto-blanco',
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/coppel.svg',
+		alt: 'Coppel',
+	},
+	{
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/liverpool.svg',
+		alt: 'Liverpool',
+	},
+	{
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/milano.svg',
+		alt: 'Milano',
+	},
+	{
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/punto-blanco.svg',
 		alt: 'Punto Blanco',
 	},
-	{ src: '/api/cdn?url=f_avif,q_100/cliente-sara-lee', alt: 'Sara Lee' },
-	{ src: '/api/cdn?url=f_avif,q_100/cliente-woolworth', alt: 'Woolworth' },
+	{
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/sara-lee.svg',
+		alt: 'Sara Lee',
+	},
+	{
+		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/customers/woolworth.svg',
+		alt: 'Woolworth',
+	},
 ]
 
 const logosContainerVariants: Variants = {

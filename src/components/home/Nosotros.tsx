@@ -4,7 +4,6 @@ import { motion } from 'motion/react'
 import TitleTag from '../ui/TitleTag'
 import Link from 'next/link'
 import { RiArrowRightUpLine } from 'react-icons/ri'
-import Image from 'next/image'
 
 export default function Nosotros() {
 	return (
@@ -19,17 +18,17 @@ export default function Nosotros() {
 				muted
 				playsInline
 				preload='auto'
-				poster='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
+				poster='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/video.thumbnail.avif'
 				className='absolute top-0 left-0 z-10 h-full w-full bg-background object-cover'
 			>
 				<source
-					src='/api/cdn?type=video&url=f_auto:video,q_auto/video-bg-conocenos'
+					src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/video.mp4'
 					type='video/mp4'
 				/>
 				Tu navegador no es compatible con el video.
 			</video>
-			<div className='absolute top-0 left-0 z-[9] h-full w-full bg-background object-cover'>
-				{/* Fallback imagen si el video no se puede cargar */}
+			{/* <div className='absolute top-0 left-0 z-[9] h-full w-full bg-background object-cover'>
+				// Fallback imagen si el video no se puede cargar
 				<Image
 					src='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
 					alt='Fallback video image'
@@ -39,7 +38,7 @@ export default function Nosotros() {
 					className='h-full w-full object-cover'
 					aria-hidden
 				/>
-			</div>
+			</div> */}
 
 			<div className='absolute top-0 left-0 h-full w-full bg-black opacity-10' />
 			<div className='relative z-10 flex h-full min-h-screen w-full flex-col items-start justify-end gap-10 px-6 py-10 text-white'>
