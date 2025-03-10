@@ -14,6 +14,8 @@
 	--text-body: clamp(1.125rem, 1.092rem + 0.164vw, 1.25rem) /* p */;
 	--text-label: clamp(0.875rem, 0.842rem + 0.164vw, 1rem);
 	--text-header-link: clamp(0.875rem, 0.842rem + 0.164vw, 1rem) /* a */;
+	--text-fact: clamp(2.25rem, 1.909rem + 1.705vw, 3rem);
+	--font-fact: var(--clash-grotesk-font);
 
 	--breakpoint-lg: 64.0625rem;
 	--breakpoint-md: 48.0625rem;
