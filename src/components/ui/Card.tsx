@@ -44,7 +44,7 @@ const Card: FC<CardProps> = ({
 					loading='lazy'
 					quality={100}
 					aria-hidden
-					className='card-image-height h-full w-full object-cover brightness-110'
+					className='h-full w-full object-cover brightness-110'
 				/>
 			</div>
 

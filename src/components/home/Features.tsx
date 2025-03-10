@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card'
 
 export default function Features() {
 	return (
-		<Section>
+		<Section className='h-screen'>
 			<div className='grid h-full w-full grid-cols-3 gap-3 max-lg:grid-cols-1'>
 				<Card
 					label='CALIDAD'

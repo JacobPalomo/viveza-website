@@ -179,10 +179,6 @@ strong {
 	);
 }
 
-.card-image-height {
-	height: calc(100vh - 24px);
-}
-
 .animate-pulse-scale {
 	animation: pulseFade 0.8s ease-out forwards;
 }
