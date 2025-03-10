@@ -1,16 +1,16 @@
 'use client'
 
 import { motion } from 'motion/react'
-import TitleTag from '../ui/TitleTag'
 import Link from 'next/link'
 import { RiArrowRightUpLine } from 'react-icons/ri'
+import Section from '@/components/ui/Section'
+import Title from '@/components/ui/Title'
 
 export default function Nosotros() {
 	return (
-		<section
-			id='conocenos'
-			data-header-theme='light'
-			className='relative z-[11] min-h-screen w-full bg-background'
+		<Section
+			className='h-screen'
+			dataHeaderTheme='light'
 		>
 			<video
 				autoPlay
@@ -19,7 +19,7 @@ export default function Nosotros() {
 				playsInline
 				preload='auto'
 				poster='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/video.thumbnail.avif'
-				className='absolute top-0 left-0 z-10 h-full w-full bg-background object-cover'
+				className='z-10 h-full w-full bg-background object-cover'
 			>
 				<source
 					src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/us/video.mp4'
@@ -27,134 +27,34 @@ export default function Nosotros() {
 				/>
 				Tu navegador no es compatible con el video.
 			</video>
-			{/* <div className='absolute top-0 left-0 z-[9] h-full w-full bg-background object-cover'>
-				// Fallback imagen si el video no se puede cargar
-				<Image
-					src='/api/cdn?type=video&url=f_avif,q_90/video-bg-conocenos'
-					alt='Fallback video image'
-					width={1800}
-					height={1012}
-					loading='lazy'
-					className='h-full w-full object-cover'
-					aria-hidden
+
+			<div className='absolute top-0 right-0 bottom-0 left-0 z-[15] h-full w-full bg-gradient-to-t from-black/75 from-0% to-black/0 to-100%' />
+
+			<motion.div
+				initial={{ filter: 'blur(8px)', opacity: 0.25 }}
+				whileInView={{ filter: 'blur(0)', opacity: 1 }}
+				transition={{ duration: 0.5, delay: 0.1 }}
+				className='absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center justify-center gap-6 text-white'
+			>
+				<Title
+					label='NOSOTROS'
+					title='El origen de la comodidad'
+					alignment='center'
+					theme='light'
 				/>
-			</div> */}
 
-			<div className='absolute top-0 left-0 h-full w-full bg-black opacity-10' />
-			<div className='relative z-10 flex h-full min-h-screen w-full flex-col items-start justify-end gap-10 px-6 py-10 text-white'>
-				<div className='w-2/3 max-w-3xl max-sm:w-full'>
-					<div className='!mb-5 flex w-full flex-col items-start justify-center gap-2'>
-						<motion.div
-							initial={{
-								scale: 0.85,
-								translateY: 40,
-								opacity: 0,
-								filter: 'blur(8px)',
-							}}
-							whileInView={{
-								scale: 1,
-								translateY: 0,
-								filter: 'blur(0)',
-								opacity: 1,
-							}}
-							transition={{ duration: 0.3, delay: 0, ease: 'linear' }}
-						>
-							<TitleTag
-								textColor='#fff'
-								divisorColor='#fff'
-							>
-								NOSOTROS
-							</TitleTag>
-						</motion.div>
-						<motion.h2
-							initial={{
-								filter: 'blur(16px)',
-								transform: 'translateY(10px) scale(.85)',
-								opacity: 0,
-							}}
-							whileInView={{
-								filter: 'blur(0)',
-								transform: 'translateY(0) scale(1)',
-								opacity: 1,
-							}}
-							transition={{
-								duration: 0.3,
-								delay: 0.1,
-								ease: 'linear',
-							}}
-							className='!text-5xl !font-normal text-white max-md:!text-4xl max-sm:!text-3xl'
-						>
-							El origen de la comodidad
-						</motion.h2>
-					</div>
-
-					<motion.p
-						initial={{
-							filter: 'blur(8px)',
-							transform: 'translateY(40px) scale(0.85)',
-							opacity: 0,
-						}}
-						whileInView={{
-							filter: 'blur(0)',
-							transform: 'translateY(0) scale(1)',
-							opacity: 1,
-						}}
-						transition={{
-							duration: 0.3,
-							delay: 0.2,
-							ease: 'linear',
-						}}
-					>
-						En Viveza Textil, con más de 20 años de experiencia, somos pioneros
-						en el diseño, fabricación y comercialización de ropa interior,
-						exterior y deportiva mediante tecnología Seamless de la más alta
-						calidad.
-					</motion.p>
-				</div>
-
-				<motion.div
-					initial={{
-						scale: 0.85,
-						filter: 'blur(8px)',
-						translateY: 40,
-						opacity: 0,
-					}}
-					whileInView={{
-						filter: 'blur(0)',
-						translateY: 0,
-						scale: 1,
-						opacity: 1,
-					}}
-					transition={{
-						duration: 0.3,
-						delay: 0.3,
-						ease: 'linear',
-					}}
+				<Link
+					href='/nosotros'
+					className='flex h-max w-max items-center justify-end gap-2 rounded-full border-[1.5px] border-white py-1 pr-2 pl-3 text-base'
 				>
-					<motion.div
-						initial={{
-							scale: 1,
-						}}
-						whileHover={{
-							scale: 1.05,
-							originX: 0,
-						}}
-						whileTap={{ scale: 0.975, originX: 0 }}
-					>
-						<Link
-							href='/nosotros'
-							className='flex h-max w-max items-center justify-end gap-2 rounded-full border-[1.5px] border-white py-1 pr-2 pl-3 text-base'
-						>
-							<span className='uppercase'>Más sobre nosotros</span>
+					<span className='uppercase'>Conoce más</span>
 
-							<RiArrowRightUpLine
-								size={24}
-								color='white'
-							/>
-						</Link>
-					</motion.div>
-				</motion.div>
-			</div>
-		</section>
+					<RiArrowRightUpLine
+						size={24}
+						color='white'
+					/>
+				</Link>
+			</motion.div>
+		</Section>
 	)
 }

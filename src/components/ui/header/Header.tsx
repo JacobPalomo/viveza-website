@@ -15,7 +15,7 @@ import MobileHeader from './MobileHeader'
 
 export type MenuItem = { label: string; href: string }
 type ScrollDirection = 'up' | 'down'
-type HeaderTheme = 'light' | 'dark'
+export type HeaderTheme = 'light' | 'dark'
 
 // Lista de enlaces del menú
 const menuItems = [
@@ -119,7 +119,7 @@ function handleIntersection(
 	let bestEntry: IntersectionObserverEntry | null = null
 	let bestRatio = 0
 
-	entries.forEach(entry => {
+	entries.forEach((entry) => {
 		if (!entry.isIntersecting) return
 
 		const sectionRect = entry.boundingClientRect
@@ -207,7 +207,7 @@ export default function Header() {
 			threshold: thresholds,
 		}
 
-		const observer = new IntersectionObserver(entries => {
+		const observer = new IntersectionObserver((entries) => {
 			handleIntersection(
 				entries,
 				activeHeaderRef as RefObject<HTMLElement>,
@@ -220,7 +220,7 @@ export default function Header() {
 			)
 		}, observerOptions)
 
-		sections.forEach(section => observer.observe(section))
+		sections.forEach((section) => observer.observe(section))
 		return () => {
 			observer.disconnect()
 		}
