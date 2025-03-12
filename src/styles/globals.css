@@ -179,6 +179,14 @@ strong {
 	);
 }
 
+.swiper-pagination-bullet {
+	background: var(--color-background) !important;
+}
+
+.swiper-pagination-bullet-active {
+	background: var(--color-primary) !important;
+}
+
 .animate-pulse-scale {
 	animation: pulseFade 0.8s ease-out forwards;
 }

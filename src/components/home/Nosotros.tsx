@@ -8,10 +8,7 @@ import Title from '@/components/ui/Title'
 
 export default function Nosotros() {
 	return (
-		<Section
-			className='h-screen'
-			dataHeaderTheme='light'
-		>
+		<Section className='h-screen'>
 			<video
 				autoPlay
 				loop

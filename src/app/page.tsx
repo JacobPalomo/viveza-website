@@ -22,15 +22,15 @@ export default function Home() {
 				<Features />
 			</div>
 
-			<Nosotros />
-
 			<div
 				className='relative h-full w-full'
-				data-header-theme='dark'
+				data-header-theme='light'
 			>
+				<Nosotros />
 				<Marcas />
-				<Conecta />
 			</div>
+
+			<Conecta />
 		</Main>
 	)
 }
