@@ -1,4 +1,6 @@
-import { FC, memo } from 'react'
+'use client'
+
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import Title from './Title'
@@ -26,8 +28,50 @@ const Card: FC<CardProps> = ({
 	theme = 'light',
 	alignment = 'left',
 }) => {
+	const [pHeight, setPHeight] = useState<number>(0)
+	const descriptionRef = useRef<HTMLDivElement>(null)
+
+	function handleEnter() {
+		const pElement = descriptionRef?.current
+		if (!pElement) return
+
+		pElement.style.opacity = '1'
+
+		const parentPElement = pElement.parentElement
+		if (!parentPElement) return
+
+		parentPElement.style.transform = 'translateY(0)'
+	}
+
+	function handleLeave() {
+		const pElement = descriptionRef?.current
+		if (!pElement) return
+
+		pElement.style.opacity = '0'
+
+		const parentPElement = pElement.parentElement
+		if (!parentPElement) return
+
+		parentPElement.style.transform = `translateY(${pHeight + 28}px)`
+	}
+
+	useEffect(() => {
+		const pElement = descriptionRef?.current
+		if (!pElement) return
+
+		const { height } = pElement.getBoundingClientRect()
+		addEventListener('resize', () => {
+			setPHeight(height)
+		})
+		setPHeight(height)
+	}, [])
+
 	return (
-		<div className='relative h-full w-full'>
+		<div
+			className='relative h-full w-full overflow-hidden'
+			onMouseEnter={handleEnter}
+			onMouseLeave={handleLeave}
+		>
 			<div className='relative h-full w-full'>
 				<div
 					className='absolute right-0 bottom-0 left-0 z-10 h-full w-full'
@@ -44,11 +88,14 @@ const Card: FC<CardProps> = ({
 					loading='lazy'
 					quality={100}
 					aria-hidden
-					className='h-full w-full object-cover brightness-110'
+					className='h-full min-h-screen w-full object-cover brightness-110'
 				/>
 			</div>
 
-			<div className='absolute right-0 bottom-0 left-0 z-20 flex h-auto w-full flex-col items-center justify-center gap-6 p-8 max-sm:p-4'>
+			<div
+				className='absolute right-0 bottom-0 left-0 z-20 flex h-auto w-full flex-col items-center justify-center gap-6 p-8 transition-all duration-600 max-sm:p-4'
+				style={{ transform: `translateY(${pHeight + 28}px)` }}
+			>
 				<Title
 					label={label}
 					title={title}
@@ -58,8 +105,9 @@ const Card: FC<CardProps> = ({
 
 				{/* Descripción */}
 				<p
+					ref={descriptionRef}
 					className={clsx([
-						'h-auto w-full',
+						'h-auto w-full transition-all duration-600',
 						{ 'text-white': theme === 'light' },
 						{ 'text-secondary': theme === 'dark' },
 						{ 'text-left': alignment === 'left' },
