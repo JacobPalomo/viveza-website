@@ -1,10 +1,12 @@
 'use client'
 
+import Section from '@/components/ui/Section'
+
 export default function Video() {
 	return (
-		<section
-			id='conocenos'
-			className='relative z-10 min-h-screen w-full bg-background px-3 pb-3'
+		<Section
+			className='h-screen pb-3'
+			dataHeaderTheme='light'
 		>
 			<video
 				autoPlay
@@ -33,6 +35,6 @@ export default function Video() {
 					aria-hidden
 				/>
 			</div> */}
-		</section>
+		</Section>
 	)
 }

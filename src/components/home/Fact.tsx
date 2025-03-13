@@ -1,5 +1,5 @@
 import { FC, memo } from 'react'
-import Fact from '../ui/Fact'
+import Fact from '@/components/ui/Fact'
 
 const ornaments = {
 	ornament1: {
@@ -11,6 +11,7 @@ const ornaments = {
 		src: 'https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/ornament-cinta-metrica.avif',
 		width: 1392,
 		height: 693,
+		className: '-rotate-[20deg]',
 	},
 }
 
