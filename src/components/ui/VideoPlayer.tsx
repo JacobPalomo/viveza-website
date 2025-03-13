@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React, { useState, useRef, useEffect, useCallback, memo } from 'react'
 import {
 	RiFullscreenFill,
+	RiFullscreenExitFill,
 	RiPauseMiniFill,
 	RiPlayFill,
 	RiVolumeMuteFill,
@@ -14,6 +15,7 @@ import {
 
 interface VideoPlayerProps {
 	source: string
+	poster: string
 }
 
 type OverlayAction =
@@ -22,7 +24,7 @@ type OverlayAction =
 	| { type: 'volume'; value: number }
 	| { type: 'seek'; value: number }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 	// Referencias a elementos
 	const videoContainerRef = useRef<HTMLDivElement>(null)
 	const mainVideoRef = useRef<HTMLVideoElement>(null)
@@ -45,6 +47,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 	const [isEnded, setIsEnded] = useState<boolean>(false)
 	const [volume, setVolume] = useState<number>(100)
 	const [isMuted, setIsMuted] = useState<boolean>(false)
+	const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
+	const [hasPlayed, setHasPlayed] = useState<boolean>(false)
 
 	// Estados para mostrar u ocultar controles y slider de volumen
 	const [controlsVisible, setControlsVisible] = useState<boolean>(true)
@@ -106,6 +110,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 		}
 	}, [resetControlsTimer])
 
+	useEffect(() => {
+		const handleFullscreenChange = () => {
+			setIsFullscreen(!!document.fullscreenElement)
+		}
+		document.addEventListener('fullscreenchange', handleFullscreenChange)
+		return () => {
+			document.removeEventListener('fullscreenchange', handleFullscreenChange)
+		}
+	}, [])
+
 	// Actualiza la duración y el tiempo actual
 	const handleLoadedMetadata = () => {
 		if (mainVideoRef.current) {
@@ -123,7 +137,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 	const handleVideoEnded = () => {
 		setIsEnded(true)
 		setIsPlaying(false)
-		triggerOverlay({ type: 'pause' })
 	}
 
 	// Permite pausar o reproducir al hacer clic sobre el video
@@ -265,12 +278,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 			setIsPlaying(false)
 			triggerOverlay({ type: 'pause' })
 		} else {
+			if (!hasPlayed) {
+				setHasPlayed(true)
+			}
 			mainVideoRef.current.play()
 			setIsPlaying(true)
 			triggerOverlay({ type: 'play' })
 		}
 		resetControlsTimer()
-	}, [isPlaying, isEnded, resetControlsTimer])
+	}, [isPlaying, isEnded, resetControlsTimer, hasPlayed])
 
 	// --- Control de Volumen Personalizado ---
 	const updateVolume = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -457,12 +473,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 			<video
 				ref={mainVideoRef}
 				src={source}
+				poster={poster}
 				onClick={handleVideoClick}
 				onLoadedMetadata={handleLoadedMetadata}
 				onTimeUpdate={handleTimeUpdate}
 				onEnded={handleVideoEnded}
 				onContextMenu={(e) => e.preventDefault()}
 				preload='auto'
+				crossOrigin='anonymous'
 				className='!pointer-events-auto h-full w-full object-cover'
 			/>
 
@@ -473,12 +491,23 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 				onLoadedMetadata={handleLoadedMetadata}
 				onSeeked={handleOffscreenSeeked}
 				preload='metadata'
+				crossOrigin='anonymous'
 				className='!hidden'
 			/>
 			<canvas
 				ref={canvasRef}
 				className='!hidden'
 			/>
+			{((!hasPlayed && currentTime === 0) || isEnded) && (
+				<div className='pointer-events-auto absolute inset-0 flex items-center justify-center'>
+					<button
+						onClick={togglePlayPause}
+						className='rounded-full p-8 text-white'
+					>
+						{isEnded ? <RiRestartLine size={80} /> : <RiPlayFill size={80} />}
+					</button>
+				</div>
+			)}
 
 			{/* Overlay de animación para atajos */}
 			{overlay && (
@@ -512,7 +541,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 				onMouseLeave={handleControlsMouseLeave}
 				className={clsx([
 					'pointer-events-none absolute inset-0 flex w-full items-end justify-center transition-opacity duration-500',
-					{ 'opacity-0': !controlsVisible },
+					{
+						'opacity-0':
+							!controlsVisible || (!hasPlayed && currentTime === 0) || isEnded,
+					},
 				])}
 			>
 				{/* Degradado para mejorar la visibilidad de los controles */}
@@ -529,7 +561,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 					{/* Controles: Play/Pause o Reiniciar si terminó */}
 					<button
 						onClick={togglePlayPause}
-						className='z-[2] text-white'
+						className='z-[2] cursor-pointer text-white'
 					>
 						{isEnded ? (
 							<RiRestartLine size={24} />
@@ -626,7 +658,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 
 								<button
 									onClick={toggleMute}
-									className='relative z-20 flex items-center justify-center text-white'
+									className='relative z-20 flex cursor-pointer items-center justify-center text-white'
 								>
 									{isMuted ? (
 										<RiVolumeMuteFill size={24} />
@@ -638,9 +670,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source }) => {
 
 							<button
 								onClick={toggleFullScreen}
-								className='z-[2] text-white'
+								className='z-[2] cursor-pointer text-white'
 							>
-								<RiFullscreenFill size={24} />
+								{isFullscreen ? (
+									<RiFullscreenExitFill size={24} />
+								) : (
+									<RiFullscreenFill size={24} />
+								)}
 							</button>
 						</div>
 					</div>

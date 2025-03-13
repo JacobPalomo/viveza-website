@@ -21,7 +21,7 @@ const Conecta: FC = () => {
 					muted
 					style={{
 						maskImage:
-							'linear-gradient(to bottom, oklch(0.98 0 0 / 0) 0%, oklch(0.98 0 0 / 1) 1%);',
+							'linear-gradient(to bottom, oklch(0.98 0 0 / 0) 0%, oklch(0.98 0 0 / 1) 1%)',
 					}}
 				>
 					<source src='https://5iqutjjvwavjp1v7.public.blob.vercel-storage.com/home/social-desktop.mp4' />
