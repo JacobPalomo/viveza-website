@@ -21,7 +21,7 @@ export type HeaderTheme = 'light' | 'dark'
 const menuItems = [
 	{ label: 'Inicio', href: '/' },
 	{ label: 'Nosotros', href: '/nosotros' },
-	{ label: 'Tecnología', href: '#' },
+	{ label: 'Tecnología', href: '/tecnologia' },
 	{ label: 'Marcas', href: '#' },
 	{ label: 'Blog', href: '#' },
 ]
