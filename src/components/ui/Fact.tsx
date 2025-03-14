@@ -13,7 +13,7 @@ interface FactOrnament {
 	className?: string
 }
 
-type FactOrnaments = { ornament1: FactOrnament; ornament2: FactOrnament }
+export type FactOrnaments = { ornament1: FactOrnament; ornament2: FactOrnament }
 
 interface FactProps {
 	ornaments?: FactOrnaments
