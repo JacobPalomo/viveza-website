@@ -13,6 +13,10 @@ import {
 	RiRestartLine,
 } from 'react-icons/ri'
 
+interface IOSHTMLVideoElement extends HTMLVideoElement {
+	webkitEnterFullscreen?: () => void
+}
+
 interface VideoPlayerProps {
 	source: string
 	poster: string
@@ -62,6 +66,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 		(OverlayAction & { key: number }) | null
 	>(null)
 	const overlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+	const [isMobile, setIsMobile] = useState(false)
+
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth <= 768)
+		}
+		checkMobile()
+		window.addEventListener('resize', checkMobile)
+		return () => window.removeEventListener('resize', checkMobile)
+	}, [])
 
 	// Estados para el seek acumulado
 	const [initialSeekTime, setInitialSeekTime] = useState<number | null>(null)
@@ -267,23 +281,37 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 	// Función para play/pause y mostrar overlay; si el video terminó se reinicia.
 	const togglePlayPause = useCallback(() => {
 		if (!mainVideoRef.current) return
+		const videoEl = mainVideoRef.current
+
+		const playVideo = () => {
+			videoEl
+				.play()
+				.then(() => {
+					setIsPlaying(true)
+					triggerOverlay({ type: 'play' })
+				})
+				.catch((err) => {
+					console.error('Error playing video:', err)
+				})
+		}
+
 		if (isEnded) {
-			mainVideoRef.current.currentTime = 0
+			videoEl.currentTime = 0
 			setIsEnded(false)
-			mainVideoRef.current.play()
-			setIsPlaying(true)
-			triggerOverlay({ type: 'play' })
+			requestAnimationFrame(() => {
+				playVideo()
+			})
 		} else if (isPlaying) {
-			mainVideoRef.current.pause()
+			videoEl.pause()
 			setIsPlaying(false)
 			triggerOverlay({ type: 'pause' })
 		} else {
 			if (!hasPlayed) {
 				setHasPlayed(true)
 			}
-			mainVideoRef.current.play()
-			setIsPlaying(true)
-			triggerOverlay({ type: 'play' })
+			requestAnimationFrame(() => {
+				playVideo()
+			})
 		}
 		resetControlsTimer()
 	}, [isPlaying, isEnded, resetControlsTimer, hasPlayed])
@@ -346,14 +374,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 	}, [isMuted, volume, resetControlsTimer])
 
 	const toggleFullScreen = useCallback(() => {
-		if (!videoContainerRef.current) return
-		if (!document.fullscreenElement) {
+		if (!videoContainerRef.current || !mainVideoRef.current) return
+		const videoEl = mainVideoRef.current as IOSHTMLVideoElement
+		if (isMobile && videoEl.webkitEnterFullscreen) {
+			videoEl.webkitEnterFullscreen()
+		} else if (!document.fullscreenElement) {
 			videoContainerRef.current.requestFullscreen()
 		} else {
 			document.exitFullscreen()
 		}
 		resetControlsTimer()
-	}, [resetControlsTimer])
+	}, [resetControlsTimer, isMobile])
 
 	// --- Atajos de teclado ---
 	useEffect(() => {
@@ -474,6 +505,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 				ref={mainVideoRef}
 				src={source}
 				poster={poster}
+				playsInline
 				onClick={handleVideoClick}
 				onLoadedMetadata={handleLoadedMetadata}
 				onTimeUpdate={handleTimeUpdate}
@@ -557,18 +589,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 				/>
 
 				{/* Contenedor interactivo de controles (se le activa pointer-events) */}
-				<div className='pointer-events-auto z-[2] !mb-8 flex w-full items-end justify-between gap-2 px-10'>
+				<div className='pointer-events-auto z-[2] !mb-8 flex w-full items-end justify-between gap-2 px-10 max-sm:px-3'>
 					{/* Controles: Play/Pause o Reiniciar si terminó */}
 					<button
 						onClick={togglePlayPause}
 						className='z-[2] cursor-pointer text-white'
 					>
 						{isEnded ? (
-							<RiRestartLine size={24} />
+							<RiRestartLine size={isMobile ? 40 : 24} />
 						) : isPlaying ? (
-							<RiPauseMiniFill size={32} />
+							<RiPauseMiniFill size={isMobile ? 40 : 32} />
 						) : (
-							<RiPlayFill size={32} />
+							<RiPlayFill size={isMobile ? 40 : 32} />
 						)}
 					</button>
 
@@ -661,9 +693,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 									className='relative z-20 flex cursor-pointer items-center justify-center text-white'
 								>
 									{isMuted ? (
-										<RiVolumeMuteFill size={24} />
+										<RiVolumeMuteFill size={isMobile ? 32 : 24} />
 									) : (
-										<RiVolumeUpFill size={24} />
+										<RiVolumeUpFill size={isMobile ? 32 : 24} />
 									)}
 								</button>
 							</div>
@@ -673,9 +705,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ source, poster }) => {
 								className='z-[2] cursor-pointer text-white'
 							>
 								{isFullscreen ? (
-									<RiFullscreenExitFill size={24} />
+									<RiFullscreenExitFill size={isMobile ? 32 : 24} />
 								) : (
-									<RiFullscreenFill size={24} />
+									<RiFullscreenFill size={isMobile ? 32 : 24} />
 								)}
 							</button>
 						</div>
