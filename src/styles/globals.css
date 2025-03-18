@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-background: #f5f7fa;
+	--color-primary: #2ca8df;
+	--color-secondary: #3a3a3a;
+	--text-hero: clamp(2.25rem, 1.814rem + 2.182vw, 3.75rem) /* h2 */;
+	--text-subtitle: clamp(1.25rem, 1.036rem + 1.071vw, 2rem);
+
+	--breakpoint-lg: 64.0625rem;
+	--breakpoint-md: 48.0625rem;
+	--breakpoint-sm: 26.625rem;
+	--breakpoint-xs: 23.5rem;
+	--breakpoint-2xs: 20.0625rem;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+* {
+	line-height: calc(1em + 0.5rem);
+	margin: 0;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--general-sans-font);
+	font-size: var(--text-body);
+	-webkit-font-smoothing: antialiased;
+	color: var(--color-secondary);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+	pointer-events: none;
+	user-select: none;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+p {
+	font-size: 1.25rem;
+	/* hyphens: auto; */
+	text-wrap: pretty;
+	font-weight: 300 !important;
+	letter-spacing: 0.02rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--clash-grotesk-font);
+	font-weight: 400;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: var(--text-hero);
+}
+
+h2 {
+	font-size: var(--text-hero);
+}
+
+h3 {
+	font-size: var(--text-title);
+	line-height: var(--leading-title);
+}
+
+strong {
+	font-weight: 500;
+	color: var(--color-primary);
+}
+
+#root,
+#__next {
+	isolation: isolate;
+}
+
+/* Estilo general de la barra de scroll */
+*::-webkit-scrollbar {
+	width: 6px; /* Ancho de la barra */
+}
+
+/* Estilo del track (fondo de la barra de scroll) */
+*::-webkit-scrollbar-track {
+	background: var(--color-primary); /* Color de fondo */
+}
+
+/* Estilo del thumb (barra deslizante) */
+*::-webkit-scrollbar-thumb {
+	background: hsl(216 33% 97% / 0.75); /* Color de la barra */
+	border-radius: 6px;
+}
+
+/* Cambia el color cuando se pasa el mouse sobre la barra */
+*::-webkit-scrollbar-thumb:hover {
+	background: var(--color-background);
+	margin: 10px;
+}
