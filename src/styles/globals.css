@@ -179,6 +179,10 @@ strong {
 	);
 }
 
+.h-section-content {
+	max-height: calc(100vh - 24px);
+}
+
 .swiper-pagination-bullet {
 	background: var(--color-background) !important;
 }
